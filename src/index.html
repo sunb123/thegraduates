@@ -9,6 +9,16 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <link rel="stylesheet" href="css/main.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap2/bootstrap-switch.css" rel="stylesheet">
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.js"></script>
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="bower_components/Chart.js/dist/Chart.js"></script>
+
     </head>
     <body>
 
@@ -32,11 +42,26 @@
             <button class="btn btn-success">Create New Activity</button><br>
                 <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="500" height="600" frameborder="0" scrolling="no"></iframe>
             <br>
+
                 <div id="progress-bar">
-                <canvas id="myChart" width="350" height="100"></canvas>
-<!--                 <img src="img/fitbit_chart.png" id="progress-chart" alt="progress" style="width:504px;height:228px;">
- -->                </div>
-            </div>
+<!--                     <div class="btn-group btn-toggle"> 
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
+                        <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
+                    </div> -->
+<!--                     <div class="bootstrap-swtich-container">
+                        <span class="bootstrap-switch-handle-on bootstrap-swtich-primary">Difficulty
+                        </span>
+                        <span class="bootstrap-switch-label">&nbsp;</span>
+                        <span class="bootstrap-switch-handle-off bootstrap-switch-default">Length</span>
+                        <input id="switch-size" name="my-checkbox" type="checkbox" checked data-size="small">
+                    </div> -->
+<!--                     <div class="well collapse" id="collapsible">
+ -->                        <canvas id="myChart" width="350" height="100"></canvas>
+<!--                         <canvas id="myChart2" width="350" height="100" hidden></canvas>
+ -->
+                    </div>
+<!--                 </div>
+ -->            </div>
             <div class="col-md-3 col">
                 <h1>Events</h1>
                 <button class="btn btn-primary">Filter</button><br><br>
@@ -63,17 +88,16 @@
             <!--<div class="col-md-1">.col-md-1</div>-->
         </div>
     </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        <script src="bower_components/Chart.js/dist/Chart.js"></script>
 
     </body>
 </html>
 
 
 <script>
+$(document).ready(function(){
+
+//$("[name='my-checkbox']").bootstrapSwitch();
+
 var ctx = document.getElementById("myChart").getContext("2d");
 
 var data = {
@@ -137,4 +161,26 @@ var myBarChart = new Chart(ctx, {
     data: data,
     options: options,
 });
+
+$('.btn-toggle').click(function() {
+    $(this).find('.btn').toggleClass('active');  
+    
+    if ($(this).find('.btn-primary').size()>0) {
+        $(this).find('.btn').toggleClass('btn-primary');
+    }
+    if ($(this).find('.btn-danger').size()>0) {
+        $(this).find('.btn').toggleClass('btn-danger');
+    }
+    if ($(this).find('.btn-success').size()>0) {
+        $(this).find('.btn').toggleClass('btn-success');
+    }
+    if ($(this).find('.btn-info').size()>0) {
+        $(this).find('.btn').toggleClass('btn-info');
+    }
+    
+    $(this).find('.btn').toggleClass('btn-default');
+       
+});
+});
+
 </script>
