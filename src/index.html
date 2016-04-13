@@ -173,7 +173,7 @@ $(document).ready(function(){
 
 
 $("#save-comment").click(function(){
-    $("#myModal").modal('hide');
+    $("#myModal").modal('toggle');
     Lobibox.notify('success',{
         size: 'normal',
         rounded: 'false',
@@ -238,6 +238,10 @@ $('.btn-toggle').click(function() {
     }
     
     $(this).find('.btn').toggleClass('btn-default');
+});
+
+
+
 });
 
 </script>
