@@ -19,6 +19,11 @@
         <script src="js/main.js"></script>
         <script src="bower_components/Chart.js/dist/Chart.js"></script>
 
+        <link rel="stylesheet" href="bower_components/lobibox/dist/css/lobibox.min.css"/>
+        <script src="bower_components/lobibox/dist/js/lobibox.min.js"></script>
+
+
+
     </head>
     <body>
 
@@ -29,11 +34,11 @@
                 <input type="text" class="form-control" name="history"><br>
 
                 <ul class="list-group history-list">
-                    <li class="list-group-item"><a href="#">History</a></li>
-                    <li class="list-group-item"><a href="#">History</a></li>
-                    <li class="list-group-item"><a href="#">History</a></li>
-                    <li class="list-group-item"><a href="#">History</a></li>
-                    <li class="list-group-item"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
                 </ul>
             </div>
 
@@ -43,11 +48,11 @@
                 <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="500" height="600" frameborder="0" scrolling="no"></iframe>
             <br>
 
-                <div id="progress-bar">
-<!--                     <div class="btn-group btn-toggle"> 
+                <div id="progress-bar" style="text-align: center;">
+                    <div class="btn-group btn-toggle" style="text-align: center;"> 
                         <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
                         <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
-                    </div> -->
+                    </div>
 <!--                     <div class="bootstrap-swtich-container">
                         <span class="bootstrap-switch-handle-on bootstrap-swtich-primary">Difficulty
                         </span>
@@ -60,8 +65,7 @@
 <!--                         <canvas id="myChart2" width="350" height="100" hidden></canvas>
  -->
                     </div>
-<!--                 </div>
- -->            </div>
+            </div>
             <div class="col-md-3 col">
                 <h1>Events</h1>
                 <button class="btn btn-primary">Filter</button><br><br>
@@ -90,11 +94,47 @@
     </div>
 
     </body>
+
+    <!-- Modal for Past Event Comments -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Your Comments</h4>
+          </div>
+          <div class="modal-body" style="font-size:15pt;">
+            <textarea style="width:500px; height:100px;"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button id="save-comment" type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </html>
 
 
 <script>
 $(document).ready(function(){
+
+$("#save-comment").click(function(){
+    $("#myModal").modal('hide');
+    Lobibox.notify('success',{
+        size: 'normal',
+        rounded: 'false',
+        delay: false,
+        position: 'center top',
+        msg: 'Comment saved!',
+        sound: false,
+        icon: false,
+    });
+})
+
+
+
 
 //$("[name='my-checkbox']").bootstrapSwitch();
 
@@ -104,62 +144,19 @@ var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
         {
-            label: "My First dataset",
+            label: "",
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
             highlightStroke: "rgba(220,220,220,1)",
             data: [65, 59, 80, 81, 56, 55, 40]
         },
-        {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.5)",
-            strokeColor: "rgba(151,187,205,0.8)",
-            highlightFill: "rgba(151,187,205,0.75)",
-            highlightStroke: "rgba(151,187,205,1)",
-            data: [28, 48, 40, 19, 86, 27, 90]
-        }
     ]
 };
-var options = {
-    //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-    scaleBeginAtZero : true,
 
-    //Boolean - Whether grid lines are shown across the chart
-    scaleShowGridLines : true,
-
-    //String - Colour of the grid lines
-    scaleGridLineColor : "rgba(0,0,0,.05)",
-
-    //Number - Width of the grid lines
-    scaleGridLineWidth : 1,
-
-    //Boolean - Whether to show horizontal lines (except X axis)
-    scaleShowHorizontalLines: true,
-
-    //Boolean - Whether to show vertical lines (except Y axis)
-    scaleShowVerticalLines: true,
-
-    //Boolean - If there is a stroke on each bar
-    barShowStroke : true,
-
-    //Number - Pixel width of the bar stroke
-    barStrokeWidth : 2,
-
-    //Number - Spacing between each of the X value sets
-    barValueSpacing : 5,
-
-    //Number - Spacing between data sets within X values
-    barDatasetSpacing : 1,
-
-    //String - A legend template
-    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-
-}
 var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: data,
-    options: options,
 });
 
 $('.btn-toggle').click(function() {
