@@ -10,7 +10,7 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <link rel="stylesheet" href="css/main.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap2/bootstrap-switch.css" rel="stylesheet">
-        
+
         <script src="js/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.js"></script>
 
@@ -28,7 +28,36 @@
 
     </head>
     <body>
+    <div class="container">
+        <h2>Modal Example</h2>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <div class="modal fade" id="createNewActivity" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create New Event</h4>
+                    </div>
+                    <div class="modal-body">
+                        Date: <input type="text" class="form-control" name="Date"><br>
+                        Time: <input type="text" class="form-control" name="Time"><br>
+                        Location: <input type="text" class="form-control" name="Location"><br>
+                        Difficulty: <input type="text" class="form-control" name="Difficulty"><br>
+                        Add Partners: <input type="text" class="form-control" name="Add-partners"><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3 col">
@@ -48,12 +77,12 @@
 
             <div class="col-md-6 col" id="middle-col">
                 Calendar<br>
-            <button class="btn btn-success">Create New Activity</button><br>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createNewActivity">Create New Activity +</button>
                 <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="500" height="600" frameborder="0" scrolling="no"></iframe>
             <br>
 
                 <div id="progress-bar">
-<!--                     <div class="btn-group btn-toggle"> 
+<!--                     <div class="btn-group btn-toggle">
                         <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
                         <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
                     </div> -->
@@ -109,21 +138,21 @@
                                     <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?client=safari&q=boston+ma&oe=UTF-8&ie=UTF8&hq=&hnear=Boston&gl=us&ll=32.448377,-112.074037&spn=0.040679,0.07699&z=14&output=embed"></iframe><br /><small>
                                    </div>
 
-                                  <div class="col-sm-4">   
+                                  <div class="col-sm-4">
                                     <h3> See who is going!</h3>
                                     <img src="../Slide2.jpg" alt="participants" style="width:304px">
                                     <h3> Chat box</h3>
                                      Participate in the conversation: <input type="text" name="chat"><br>
-                                    <img src="../Slide1.jpg" alt="chat_box" style="width:304px">                              
+                                    <img src="../Slide1.jpg" alt="chat_box" style="width:304px">
                                 </div>
-                                </div>                               
-                                </div>  
-                                
+                                </div>
+                                </div>
+
                                 <div class="modal-footer">
                                   <button id="sign-up" type="button" class="btn btn-primary">Sign up</button>
                                 </div>
                               </div>
-                            
+
                           </div>
 
                         </div>
@@ -222,8 +251,8 @@ var myBarChart = new Chart(ctx, {
 });
 
 $('.btn-toggle').click(function() {
-    $(this).find('.btn').toggleClass('active');  
-    
+    $(this).find('.btn').toggleClass('active');
+
     if ($(this).find('.btn-primary').size()>0) {
         $(this).find('.btn').toggleClass('btn-primary');
     }
@@ -236,7 +265,7 @@ $('.btn-toggle').click(function() {
     if ($(this).find('.btn-info').size()>0) {
         $(this).find('.btn').toggleClass('btn-info');
     }
-    
+
     $(this).find('.btn').toggleClass('btn-default');
 });
 
