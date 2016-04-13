@@ -18,12 +18,21 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script src="bower_components/Chart.js/dist/Chart.js"></script>
+<<<<<<< HEAD
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="bower_components/lobibox/dist/css/lobibox.min.css"/>
         <script src="bower_components/lobibox/dist/js/lobibox.min.js"></script>
 
+=======
+
+        <link rel="stylesheet" href="bower_components/lobibox/dist/css/lobibox.min.css"/>
+        <script src="bower_components/lobibox/dist/js/lobibox.min.js"></script>
+
+
+
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
     </head>
     <body>
 
@@ -34,11 +43,19 @@
                 <input type="text" class="form-control" name="history"><br>
 
                 <ul class="list-group history-list">
+<<<<<<< HEAD
                     <li class="list-group-item"><a href="#">History</a></li>
                     <li class="list-group-item"><a href="#">History</a></li>
                     <li class="list-group-item"><a href="#">History</a></li>
                     <li class="list-group-item"><a href="#">History</a></li>
                     <li class="list-group-item"><a href="#">History</a></li>
+=======
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
                 </ul>
             </div>
 
@@ -48,11 +65,19 @@
                 <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="500" height="600" frameborder="0" scrolling="no"></iframe>
             <br>
 
+<<<<<<< HEAD
                 <div id="progress-bar">
 <!--                     <div class="btn-group btn-toggle"> 
                         <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
                         <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
                     </div> -->
+=======
+                <div id="progress-bar" style="text-align: center;">
+                    <div class="btn-group btn-toggle" style="text-align: center;"> 
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
+                        <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
+                    </div>
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
 <!--                     <div class="bootstrap-swtich-container">
                         <span class="bootstrap-switch-handle-on bootstrap-swtich-primary">Difficulty
                         </span>
@@ -65,13 +90,18 @@
 <!--                         <canvas id="myChart2" width="350" height="100" hidden></canvas>
  -->
                     </div>
+<<<<<<< HEAD
 <!--                 </div>
  -->            </div>
+=======
+            </div>
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
             <div class="col-md-3 col">
                 <h1>Events</h1>
                 <button class="btn btn-primary">Filter</button><br><br>
                 <input type="text" class="form-control" name="activity"><br>
                 <ul class="list-group activity-list">
+<<<<<<< HEAD
                     <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
                     <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
                     <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
@@ -123,6 +153,14 @@
                         </div>
 
 
+=======
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                </ul>
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
             </div>
             <!--<div class="col-md-1">.col-md-1</div>-->
             <!--<div class="col-md-1">.col-md-1</div>-->
@@ -140,14 +178,40 @@
     </div>
 
     </body>
+<<<<<<< HEAD
+=======
+
+    <!-- Modal for Past Event Comments -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Your Comments</h4>
+          </div>
+          <div class="modal-body" style="font-size:15pt;">
+            <textarea style="width:500px; height:100px;"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button id="save-comment" type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
 </html>
 
 
 <script>
 $(document).ready(function(){
 
+<<<<<<< HEAD
 //$("[name='my-checkbox']").bootstrapSwitch();
 
+=======
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
 $("#save-comment").click(function(){
     $("#myModal").modal('hide');
     Lobibox.notify('success',{
@@ -162,6 +226,7 @@ $("#save-comment").click(function(){
 })
 
 
+<<<<<<< HEAD
 $("#sign-up").click(function(){
     $("#myModal2").modal('hide');
     Lobibox.notify('success',{
@@ -176,19 +241,30 @@ $("#sign-up").click(function(){
 })
 
 
+=======
+
+
+//$("[name='my-checkbox']").bootstrapSwitch();
+
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
 var ctx = document.getElementById("myChart").getContext("2d");
 
 var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
         {
+<<<<<<< HEAD
             label: "My First dataset",
+=======
+            label: "",
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
             fillColor: "rgba(220,220,220,0.5)",
             strokeColor: "rgba(220,220,220,0.8)",
             highlightFill: "rgba(220,220,220,0.75)",
             highlightStroke: "rgba(220,220,220,1)",
             data: [65, 59, 80, 81, 56, 55, 40]
         },
+<<<<<<< HEAD
         {
             label: "My Second dataset",
             fillColor: "rgba(151,187,205,0.5)",
@@ -238,6 +314,14 @@ var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: data,
     options: options,
+=======
+    ]
+};
+
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+>>>>>>> 6abf4ffe8966c05f1ac226c7b2d32e5af88dc645
 });
 
 $('.btn-toggle').click(function() {
