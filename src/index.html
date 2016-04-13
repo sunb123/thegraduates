@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="css/main.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap2/bootstrap-switch.css" rel="stylesheet">
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.js"></script>
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="bower_components/Chart.js/dist/Chart.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="bower_components/lobibox/dist/css/lobibox.min.css"/>
+        <script src="bower_components/lobibox/dist/js/lobibox.min.js"></script>
+
+    </head>
+    <body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col">
+                <h1>History</h1><br>
+                <input type="text" class="form-control" name="history"><br>
+
+                <ul class="list-group history-list">
+                    <li class="list-group-item"><a href="#">History</a></li>
+                    <li class="list-group-item"><a href="#">History</a></li>
+                    <li class="list-group-item"><a href="#">History</a></li>
+                    <li class="list-group-item"><a href="#">History</a></li>
+                    <li class="list-group-item"><a href="#">History</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 col" id="middle-col">
+                Calendar<br>
+            <button class="btn btn-success">Create New Activity</button><br>
+                <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="500" height="600" frameborder="0" scrolling="no"></iframe>
+            <br>
+
+                <div id="progress-bar">
+<!--                     <div class="btn-group btn-toggle"> 
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
+                        <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
+                    </div> -->
+<!--                     <div class="bootstrap-swtich-container">
+                        <span class="bootstrap-switch-handle-on bootstrap-swtich-primary">Difficulty
+                        </span>
+                        <span class="bootstrap-switch-label">&nbsp;</span>
+                        <span class="bootstrap-switch-handle-off bootstrap-switch-default">Length</span>
+                        <input id="switch-size" name="my-checkbox" type="checkbox" checked data-size="small">
+                    </div> -->
+<!--                     <div class="well collapse" id="collapsible">
+ -->                        <canvas id="myChart" width="350" height="100"></canvas>
+<!--                         <canvas id="myChart2" width="350" height="100" hidden></canvas>
+ -->
+                    </div>
+<!--                 </div>
+ -->            </div>
+            <div class="col-md-3 col">
+                <h1>Events</h1>
+                <button class="btn btn-primary">Filter</button><br><br>
+                <input type="text" class="form-control" name="activity"><br>
+                <ul class="list-group activity-list">
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
+                </ul>
+
+                <div class="container-fluid">
+                    <div class="row">
+                          <!-- Trigger the modal with a button -->
+                         <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign up for an event</button> -->
+                          <div class="modal fade" id="myModal2" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title">
+                                        <div class="row">
+                                          <div class="col-sm-4">Event host: Bob Smith</div>
+                                          <div class="col-sm-4">Difficulty level: 5 </div>
+                                          <div class="col-sm-4">Time: 2016-05-01 3-5 pm </div>
+                                        </div>
+                                  </h4>
+                                </div>
+
+                                <div class="modal-body">
+                                  <div class = 'row'>
+                                  <div class="col-sm-6">
+                                    <h3> Location</h3>
+                                    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?client=safari&q=boston+ma&oe=UTF-8&ie=UTF8&hq=&hnear=Boston&gl=us&ll=32.448377,-112.074037&spn=0.040679,0.07699&z=14&output=embed"></iframe><br /><small>
+                                   </div>
+
+                                  <div class="col-sm-4">   
+                                    <h3> See who is going!</h3>
+                                    <img src="../Slide2.jpg" alt="participants" style="width:304px">
+                                    <h3> Chat box</h3>
+                                     Participate in the conversation: <input type="text" name="chat"><br>
+                                    <img src="../Slide1.jpg" alt="chat_box" style="width:304px">                              
+                                </div>
+                                </div>                               
+                                </div>  
+                                
+                                <div class="modal-footer">
+                                  <button id="sign-up" type="button" class="btn btn-primary">Sign up</button>
+                                </div>
+                              </div>
+                            
+                          </div>
+
+                        </div>
+
+
+            </div>
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+            <!--<div class="col-md-1">.col-md-1</div>-->
+        </div>
+    </div>
+
+    </body>
+</html>
+
+
+<script>
+$(document).ready(function(){
+
+//$("[name='my-checkbox']").bootstrapSwitch();
+
+$("#save-comment").click(function(){
+    $("#myModal").modal('hide');
+    Lobibox.notify('success',{
+        size: 'normal',
+        rounded: 'false',
+        delay: false,
+        position: 'center top',
+        msg: 'Comment saved!',
+        sound: false,
+        icon: false,
+    });
+})
+
+
+$("#sign-up").click(function(){
+    $("#myModal2").modal('hide');
+    Lobibox.notify('success',{
+        size: 'normal',
+        rounded: 'false',
+        delay: false,
+        position: 'center top',
+        msg: "Congratulations! You've successfully sign up for the event!",
+        sound: false,
+        icon: false,
+    });
+})
+
+
+var ctx = document.getElementById("myChart").getContext("2d");
+
+var data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: [28, 48, 40, 19, 86, 27, 90]
+        }
+    ]
+};
+var options = {
+    //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+    scaleBeginAtZero : true,
+
+    //Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines : true,
+
+    //String - Colour of the grid lines
+    scaleGridLineColor : "rgba(0,0,0,.05)",
+
+    //Number - Width of the grid lines
+    scaleGridLineWidth : 1,
+
+    //Boolean - Whether to show horizontal lines (except X axis)
+    scaleShowHorizontalLines: true,
+
+    //Boolean - Whether to show vertical lines (except Y axis)
+    scaleShowVerticalLines: true,
+
+    //Boolean - If there is a stroke on each bar
+    barShowStroke : true,
+
+    //Number - Pixel width of the bar stroke
+    barStrokeWidth : 2,
+
+    //Number - Spacing between each of the X value sets
+    barValueSpacing : 5,
+
+    //Number - Spacing between data sets within X values
+    barDatasetSpacing : 1,
+
+    //String - A legend template
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+}
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options,
+});
+
+$('.btn-toggle').click(function() {
+    $(this).find('.btn').toggleClass('active');  
+    
+    if ($(this).find('.btn-primary').size()>0) {
+        $(this).find('.btn').toggleClass('btn-primary');
+    }
+    if ($(this).find('.btn-danger').size()>0) {
+        $(this).find('.btn').toggleClass('btn-danger');
+    }
+    if ($(this).find('.btn-success').size()>0) {
+        $(this).find('.btn').toggleClass('btn-success');
+    }
+    if ($(this).find('.btn-info').size()>0) {
+        $(this).find('.btn').toggleClass('btn-info');
+    }
+    
+    $(this).find('.btn').toggleClass('btn-default');
+       
+});
+});
+
+</script>
