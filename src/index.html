@@ -22,7 +22,41 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="bower_components/lobibox/dist/js/lobibox.min.js"></script>
 
+        <script src="js/activity.js"></script>
+        <script src="js/moment-with-locales.js"></script>
+        <script   src="https://code.jquery.com/jquery-1.12.3.js"   integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc="   crossorigin="anonymous"></script>
+        <script   src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.js"   integrity="sha256-IY2gCpIs4xnQTJzCIPlL3uUgSOwVQYD9M8t208V+7KA="   crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="css/main.css">
+
+
+        <style>
+            .filter_title {
+                text-align: right;
+            }
+<!-- from http://www.electrictoolbox.com/jquey-make-entire-table-row-clickable/ -->
+table#example {
+    border-collapse: collapse;   
+}
+#example tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#example tr:hover {
+    background-color: #ccc;
+}
+#example th {
+    background-color: #fff;
+}
+#example th, #example td {
+    padding: 3px 5px;
+}
+#example td:hover {
+    cursor: pointer;
+}
+
+
+        </style>
     </head>
     <body>
     <div class="container">
@@ -83,14 +117,14 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 col">
+            <div class="col-md-4 col">
                 <h1>History</h1><br>
                 <button type="button" class="btn btn-info hist-button" data-toggle="modal" data-target="#addHistoryModal">Add to History</button><br>
                 <input type="text" class="form-control" name="history"><br>
 
                 <ul class="list-group history-list">
 
-                    <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
+                    <li class="list-group-item" data-toggle="modal" data-target="#mymodal"><a href="#">History</a></li>
                     <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
                     <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
                     <li class="list-group-item" data-toggle="modal" data-target="#myModal"><a href="#">History</a></li>
@@ -99,7 +133,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-6 col" id="middle-col">
+            <div class="col-md-4 col" id="middle-col">
                 <div id="create-new-activity-btn" class="text-center">
                     <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createNewActivityModal">Create New Activity +</button>
                 </div>
@@ -129,18 +163,68 @@
                 </div>
             </div>
 
-            <div class="col-md-3 col">
-                <h1>Find Events</h1>
-                <button class="btn btn-primary">Filter</button><br><br>
-                <input type="text" class="form-control" name="activity"><br>
-                <ul class="list-group activity-list">
+            <div class="col-md-4 col">
+                <h1>Posted Events</h1>
 
-                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
-                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
-                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
-                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
-                    <li class="list-group-item" data-toggle="modal" data-target="#myModal2"><a href="#">Activity</a></li>
-                </ul>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn" style="min-width: 160px; max-width: 160px;">Sort By</label> <!-- should not be a button-->
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked>Date
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off">Distance
+  </label>
+</div>
+<br>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn" style="min-width: 160px; max-width: 160px;">Filter Difficulty</label> <!-- should not be a button-->
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked>1
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off">2-4
+  </label>
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off">5+
+  </label>
+</div>
+<br>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn" style="min-width: 160px; max-width: 160px;">Filter Group Size</label> <!-- should not be a button-->
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked>1
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off">2-4
+  </label>
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off">5+
+  </label>
+</div>
+             <br><br>
+
+             <!--<input type="text" class="form-control" name="activity"><br>-->
+<table class="table" id="example">
+    <thead>
+      <tr>
+        <th>Distance (Mi.)</th>
+        <th>Date</th>
+        <th>Difficulty</th>
+        <th>Group Size</th>
+      </tr>
+    </thead>
+    <tbody id="activity_right_list">
+    </tbody>
+</table>
+                <!--<ul id="activity_right_list" class="list-group activity-list">
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                </ul>-->
 
                 <div class="container-fluid">
                     <div class="row">
@@ -187,18 +271,6 @@
 
 
             </div>
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
-            <!--<div class="col-md-1">.col-md-1</div>-->
         </div>
     </div>
 
@@ -223,7 +295,6 @@
     </div>
 
 </html>
-
 
 <script>
 $(document).ready(function(){
@@ -280,8 +351,118 @@ $("#sign-up").click(function(){
         icon: false,
     });
 });
+        console.log("ready!");
+        
+        // set up dummy list of activities (for the right side)
+        var activities = [];
+        // TODO distance should not be part of activity
+        // distance should be derived from the location name
+        activities.push(new Activity("Hyannis, MA", 40, "1/2/2015", 8.5, 1));
+        activities.push(new Activity("Montreal, Canada", 400, "1/5/2015", 5.5, 2));
+        activities.push(new Activity("Providence, RI", 154, "1/6/2015", 4.5, 3));
+        activities.push(new Activity("Cambridge, MA", 1, "1/7/2015", 3.5, 5));
+        
+        // this is the filteed and sorted list
+        var processed_acts = activities.slice();
 
+        // states for the filtering buttons
+        // TODO SORT BY shoud start out in one of thestates 
+        var SORT_BY_DATE = "date";
+        var SORT_BY_DISTANCE = "distance";
+        var DIFFICULTY_UNSELECTED = "unselected";
+        var DIFFICULTY_A = "A";
+        var DIFFICULTY_B = "B";
+        var DIFFICULTY_C = "C";
+        var NUMPART_UNSELECTED = "unselected";
+        var NUMPART_A = "unselected";
+        var NUMPART_B = "unselected";
+        var NUMPART_C = "unselected";
 
+        var sort_by = SORT_BY_DATE;
+        var difficulty = DIFFICULTY_UNSELECTED;
+        var numpart = NUMPART_UNSELECTED;
+
+        distance_to_me = function(act) {
+            // TODO distance should not be part of activity
+            // should compute distance to user from location
+            return act.dist;
+        };
+
+        render_activity_html = function(act) {
+            dist = distance_to_me(act);
+
+            return "<tr data-toggle=\"modal\" data-target=\"#myModal2\"><td>" + dist + "</td><td>" + act.datestr + "</td><td>" + act.num + "</td><td>" + act.difficulty + "</td></tr>"
+        };
+        
+        sort_by_date = function(acts) {
+            comp = function(a, b) {
+                var a = moment(a.datestr).unix();
+                var b = moment(b.datestr).unix();
+                console.log("a:" + a);
+                console.log("b:" + b);
+                if (a < b) {
+                    return -1;
+                } else if (a == b){
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+            acts.sort(comp);
+        };
+
+        sort_by_dist = function(acts) {
+            comp = function(a, b) {
+                var da = distance_to_me(a);
+                var db = distance_to_me(b);    
+                console.log("da:" + da);
+                console.log("db:" + db);
+                if (da < db) {
+                    return -1;
+                } else if (da == db){
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+            acts.sort(comp);
+        };
+
+        render_list = function() {
+            // copy the main list
+            var processed_acts = activities.slice();
+            // TODO filter and sort the list
+            if (sort_by == SORT_BY_DATE) {
+                sort_by_date(processed_acts);
+            } else if (sort_by == SORT_BY_DISTANCE) {
+                sort_by_dist(processed_acts);
+            } else {
+                console.log("error unrecognized sort_by" + sort_by);
+            }
+            // write the html
+            $("#activity_right_list").empty();
+            for (var i=0; i < processed_acts.length; i++) {
+                act = processed_acts[i];
+                console.log(act);
+                $("#activity_right_list").append(render_activity_html(act));
+            }
+        };
+
+        // TODO re-render the button states
+        $("#sort_by_date").click(function() {
+            sort_by = SORT_BY_DATE;
+            render_list();
+        });
+
+        $("#sort_by_dist").click(function() {
+            sort_by = SORT_BY_DISTANCE;
+            render_list();
+        });
+
+        render_list();
+
+    });
+        
 var ctx = document.getElementById("myChart").getContext("2d");
 
 var data = {
@@ -320,10 +501,6 @@ $('.btn-toggle').click(function() {
     }
 
     $(this).find('.btn').toggleClass('btn-default');
-});
-
-
-
 });
 
 </script>
