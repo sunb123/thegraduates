@@ -100,32 +100,37 @@
             </div>
 
             <div class="col-md-6 col" id="middle-col">
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createNewActivityModal">Create New Activity +</button>
-                <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="500" height="600" frameborder="0" scrolling="no"></iframe>
-            <br>
+                <div id="create-new-activity-btn" class="text-center">
+                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createNewActivityModal">Create New Activity +</button>
+                </div>
+                <br>
+                <h2>My Upcoming Events</h2>
+                <ul class="list-group history-list">
+
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+                    <li class="list-group-item"><a href="#">Activity</a></li>
+
+                </ul>
+<!--                 <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America/New_York" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe> -->
+                <br>
 
                 <div id="progress-bar">
-<!--                     <div class="btn-group btn-toggle">
-                        <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
-                        <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
-                    </div> -->
-
-<!--                     <div class="bootstrap-swtich-container">
-                        <span class="bootstrap-switch-handle-on bootstrap-swtich-primary">Difficulty
-                        </span>
-                        <span class="bootstrap-switch-label">&nbsp;</span>
-                        <span class="bootstrap-switch-handle-off bootstrap-switch-default">Length</span>
-                        <input id="switch-size" name="my-checkbox" type="checkbox" checked data-size="small">
-                    </div> -->
-<!--                     <div class="well collapse" id="collapsible">
- -->                        <canvas id="myChart" width="350" height="100"></canvas>
-<!--                         <canvas id="myChart2" width="350" height="100" hidden></canvas>
- -->
+                    <div class="text-center">
+                        <div class="btn-group btn-toggle">
+                            <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Difficulty</button>
+                            <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Length</button>
+                        </div>
                     </div>
+
+                    <canvas id="myChart" width="350" height="100"></canvas>
+                </div>
             </div>
 
             <div class="col-md-3 col">
-                <h1>Events</h1>
+                <h1>Find Events</h1>
                 <button class="btn btn-primary">Filter</button><br><br>
                 <input type="text" class="form-control" name="activity"><br>
                 <ul class="list-group activity-list">
