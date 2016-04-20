@@ -161,7 +161,7 @@
                             </table>
                         </div>
 
-                        <h3> See who is going!</h3>
+                        <h3> See who is going</h3>
                         <!--<img src="../Slide2.jpg" alt="participants" style="width:304px">-->
 <!--                        <div>
                             <i class="fa fa-fw fa-user"> </i> <span id = 'user1'> </span><span> Exprienced climber with 3 year training.  </span>
@@ -228,7 +228,7 @@
 
 
 
-        function shuffle(array) {
+    function shuffle(array) {
             var counter = array.length;
             // While there are elements in the array
             while (counter > 0) {
@@ -244,8 +244,25 @@
             return array;
         }
 
+    function initialize() {
+         var myLatlng1 = new google.maps.LatLng(Math.random()  * 50, Math.random() /10);
+         var mapOptions = {
+             zoom: 10,
+             center: myLatlng1,
+             mapTypeId: google.maps.MapTypeId.ROADMAP
+         };
+         var map = new google.maps.Map(document.getElementById('map'),
+         mapOptions);
+         if (navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(function (position) {
+                 initialLocation = new google.maps.LatLng(Math.random()  * 50, Math.random() /10);
+                 map.setCenter(initialLocation);
+             });
+         }
+     }
 
-        //randomly generate the hosts and participants
+     function change() {
+        var map;
         var hosts = ['Bob Smith', 'Dan Hoversan', 'Johnson Cliff']; 
         var dif = ['v1', 'v3', 'v5', 'v7']; 
         var time = ['2016/04/28 11:00 - 13:00', '2016/05/24 15:00 - 17:00', '2016/05/14 10:00 - 12:00']; 
@@ -265,30 +282,15 @@
         var exp1 = document.getElementById("exp_1"); 
         exp1.innerHTML = intro_chosen[0]; 
         var exp2 = document.getElementById("exp_2"); 
-        exp2.innerHTML = intro_chosen[1]; 
-
-//        var maps = new google.maps.Maps2(document.getElementById("map"));
-//        maps.setCenter(new google.maps.LatLng(37.4452,-122.343), 13);  
-
- var map;
-
- function initialize() {
-     var myLatlng1 = new google.maps.LatLng(Math.random()  * 50, Math.random() /10);
-     var mapOptions = {
-         zoom: 10,
-         center: myLatlng1,
-         mapTypeId: google.maps.MapTypeId.ROADMAP
-     };
-     var map = new google.maps.Map(document.getElementById('map'),
-     mapOptions);
-     if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(function (position) {
-             initialLocation = new google.maps.LatLng(Math.random()  * 50, Math.random() /10);
-             map.setCenter(initialLocation);
-         });
+        exp2.innerHTML = intro_chosen[1];        
+        initialize();
      }
- }
- initialize();
+
+
+     change(); 
+     alert('change'); 
+     change(); 
+
 
     </script>
     <script src="js/jquery.js"></script>
