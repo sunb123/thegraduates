@@ -9,7 +9,9 @@
 .navbar {
     font-size: 25px;
 }
-
+#createEventNav {
+    top: 12px;
+}
 body {
     margin-top: 100px;
     background-color: #fff;
