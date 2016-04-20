@@ -1,6 +1,7 @@
 function EventsTable(events, handler) {
     this.events = events;
     this.handler = handler;
+    this.sorted_events = events.slice();
 
 // returns the html for a single event div element
 // an event is an object with the following fields:
@@ -20,7 +21,7 @@ this.render_event = function(event, event_idx) {
     loc_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-        .append(event.location + "<br>" + "40 Miles");
+        .append(event.location + "<br>" + event.distance + " Miles");
     console.log(loc_field);
     diff_field = $("<td></td>")
         .addClass("classWithPad")
@@ -47,6 +48,8 @@ this.render_event = function(event, event_idx) {
 
 // appends the event table, including header, to the parent element
 this.append_event_table = function(parent) {
+    var that = this;
+
     table = $("<div></div>")
     .append(
     $("<table></table>")
@@ -59,8 +62,8 @@ this.append_event_table = function(parent) {
     .append(
         $("<div></div>").addClass("list-group").attr("id", "event_list"));
     $(parent).append(table);
-    for (var i = 0; i < events.length; i++) {
-        $("#event_list").append(this.render_event(events[i], i));
+    for (var i = 0; i < this.sorted_events.length; i++) {
+        $("#event_list").append(this.render_event(this.sorted_events[i], i));
     }
     $("#event_list" ).on( "click", "a", function( event ) {
         $("#event_list a").removeClass("active");
@@ -72,17 +75,87 @@ this.append_event_table = function(parent) {
         function(e) {
             console.log("clicked on a sort by button");
             $("#sort_by_buttons td").css("font-weight", "");
-            $(this).css('font-weight', 'bold');
         });
     
     // TODO click handlers for the sort button
     $("#sort_by_date").on("click", function(e) {
+            that.sorted_events = that.events.slice();
+            comp = function(a, b) {
+                var a = a.date_obj.getTime();
+                var b = b.date_obj.getTime();
+                console.log(a + " " + b);
+                if (a < b) {
+                    return -1;
+                } else if (a == b){
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+            that.sorted_events.sort(comp);
+            // re-render
+            $(parent).empty();
+            that.append_event_table(parent);
+            $("#sort_by_date").css('font-weight', 'bold');
     });
     $("#sort_by_location").on("click", function(e) {
+            that.sorted_events = that.events.slice();
+            comp = function(a, b) {
+                var a = a.distance;
+                var b = b.distance;
+                if (a < b) {
+                    return -1;
+                } else if (a == b){
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+            that.sorted_events.sort(comp);
+            // re-render
+            $(parent).empty();
+            that.append_event_table(parent);
+            $("#sort_by_location").css('font-weight', 'bold');
     });
     $("#sort_by_difficulty").on("click", function(e) {
+            that.sorted_events = that.events.slice();
+            comp = function(a, b) {
+                var a = a.difficulty;
+                var b = b.difficulty;
+                if (a < b) {
+                    return -1;
+                } else if (a == b){
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+            that.sorted_events.sort(comp);
+            // re-render
+            $(parent).empty();
+            that.append_event_table(parent);
+            $("#sort_by_difficulty").css('font-weight', 'bold');
     });
     $("#sort_by_num").on("click", function(e) {
+            that.sorted_events = that.events.slice();
+            comp = function(a, b) {
+                var a = a.num;
+                var b = b.num;
+                if (a < b) {
+                    return -1;
+                } else if (a == b){
+                    return 0;
+                } else {
+                    return 1;
+                }
+            };
+            that.sorted_events.sort(comp);
+            // re-render
+            console.log("RE-RENDERING!");
+            $(parent).empty();
+            that.append_event_table(parent);
+            $(this).css('font-weight', 'bold');
+            $("#sort_by_num").css('font-weight', 'bold');
     });
     
     $("#sort_by_buttons").on("mouseover", "td",
@@ -92,12 +165,11 @@ this.append_event_table = function(parent) {
             $(this).css('text-decoration', 'underline');
     });
 
-    var that = this;
     $(parent).on("click", "a",
         function(e) {
             // find the reference to the event object
             event_idx = $(this).attr("event_idx");
-            that.handler(that.events[event_idx])
+            that.handler(that.sorted_events[event_idx])
         }
     );
 
