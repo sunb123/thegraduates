@@ -18,6 +18,9 @@
     <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3"></script>
+
+
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,10 +42,162 @@
                 <h1 class="page-header">
                     Find
                 </h1>
+
+
+                 <!-- Page Heading -->
+                <div class="row">
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-6" onClick="change();">
+                        <h2 >Upcoming events</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Page</th>
+                                        <th>Visits</th>
+                                        <th>% New Visits</th>
+                                        <th>Revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>/index.html</td>
+                                        <td>1265</td>
+                                        <td>32.3%</td>
+                                        <td>$321.33</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/about.html</td>
+                                        <td>261</td>
+                                        <td>33.3%</td>
+                                        <td>$234.12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/sales.html</td>
+                                        <td>665</td>
+                                        <td>21.3%</td>
+                                        <td>$16.34</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/blog.html</td>
+                                        <td>9516</td>
+                                        <td>89.3%</td>
+                                        <td>$1644.43</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/404.html</td>
+                                        <td>23</td>
+                                        <td>34.3%</td>
+                                        <td>$23.52</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/services.html</td>
+                                        <td>421</td>
+                                        <td>60.3%</td>
+                                        <td>$724.32</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/blog/post.html</td>
+                                        <td>1233</td>
+                                        <td>93.2%</td>
+                                        <td>$126.34</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                        <h3>Event details</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover"  style="width: 80%;">
+                                <thead>
+                                    <tr>
+                                        <th>Event host</th>
+                                        <th>Difficulty level</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id = "host">Bob Smith</td>
+                                        <td id = "diff">v5</td>
+                                        <td id = "time">2016/03/24 15:00 - 17:00 </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3> See who is going!</h3>
+                        <!--<img src="../Slide2.jpg" alt="participants" style="width:304px">-->
+<!--                        <div>
+                            <i class="fa fa-fw fa-user"> </i> <span id = 'user1'> </span><span> Exprienced climber with 3 year training.  </span>
+                        </div>
+                        
+                        <div>
+                            <i class="fa fa-fw fa-user"> </i> <span id = 'user2'> </span><span> Exprienced climber with 3 year training.  </span>
+                        </div> -->
+
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="width: 80%;">
+                                <thead>
+                                    <tr>
+                                        <th>Participants</th>
+                                        <th>Who they are</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td > <i class="fa fa-fw fa-user"> </i>  <span id = 'user1'>Bob Smith </span></td>
+                                        <td id = "exp_1">v5</td>
+                                    </tr>
+                                    <tr>
+                                        <td > <i class="fa fa-fw fa-user"> </i>  <span id = 'user2'>Bob Smith </span></td>
+                                        <td id = "exp_2">v5</td>
+                                    </tr>                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+
+
+                    <div class="col-lg-6">
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <h3> Location</h3>
+
+                        <div id="map" style="width: 500px; height: 400px;"></div>
+
+
+ <!--                       <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?client=safari&q=boston+ma&oe=UTF-8&ie=UTF8&hq=&hnear=Boston&gl=us&ll=32.448377,-112.074037&spn=0.040679,0.07699&z=14&output=embed"></iframe><br /><small> -->
+
+                   </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+
             </div>
         </div>
     </div>
-
 
 
 
@@ -56,5 +211,6 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 </html>
