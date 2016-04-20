@@ -67,6 +67,18 @@ function change() {
     initialize();
 }
 
+change(); 
 
-change();
-change();
+$("#join").click(function(){
+    $("#modal").modal('hide');
+    Lobibox.notify('success',{
+        size: 'normal',
+        rounded: 'false',
+        delay: false,
+        position: 'center top',
+        msg: "Congratulations! You've sign up for an event!",
+        sound: false,
+        icon: false,
+    });
+});
+

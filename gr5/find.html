@@ -77,7 +77,6 @@ table.append_event_table("#events_table_pane");
                     Find
                 </h1>
 
-
                  <!-- Page Heading -->
                 <div class="row">
                 </div>
@@ -85,12 +84,14 @@ table.append_event_table("#events_table_pane");
 
                 <div class="row">
                     <div class="col-lg-6" onClick="change();">
-                        <h2>Upcoming events</h2>
+                        <h3>Upcoming events you may be interested in</h3>
                         <div id="events_table_pane"></div>
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
-                        <h3>Event details</h3>
+                        <h3>Event details
+                            <button id="join" type="button" class="btn btn-success btn-lg" data-dismiss="modal" data-backdrop="false"> Join!</button>
+                        </h3>
                         <div class="table-responsive">
                             <table class="table table-hover"  style="width: 80%;">
                                 <thead>
