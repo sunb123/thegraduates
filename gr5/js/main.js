@@ -71,14 +71,30 @@ change();
 
 $("#join").click(function(){
     $("#modal").modal('hide');
-    Lobibox.notify('success',{
-        size: 'normal',
-        rounded: 'false',
-        delay: false,
-        position: 'center top',
-        msg: "Congratulations! You've sign up for an event!",
-        sound: false,
-        icon: false,
-    });
+    swal("Good job!", "You clicked the button!", "success")
 });
+
+// $('#join').on('click','td.warning input',function () { 
+//     alert('dfd'); 
+//                 swal({
+//                     title: "Are you sure?",
+//                     text: "You will not be able to recover this imaginary file!",
+//                     type: "warning",
+//                     showCancelButton: true,
+//                     confirmButtonClass: 'btn-danger',
+//                     confirmButtonText: 'Yes, delete it!',
+//                     cancelButtonText: "No, cancel plx!",
+//                     closeOnConfirm: false,
+//                     closeOnCancel: false
+//                 },
+//                 function (isConfirm) {
+//                     if (isConfirm) {
+//                         swal("Deleted!", "Your imaginary file has been deleted!", "success");
+//                     } else {
+//                         swal("Cancelled", "Your imaginary file is safe :)", "error");
+//                     }
+//                 });
+//             });
+
+
 
