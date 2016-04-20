@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .list-group {
+            width: 500px
+        }
+        .classWithPad { margin:10px; padding:10px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.3.js"   integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc="   crossorigin="anonymous"></script>
+    <script>
+
+// returns the html for a single event div element
+// an event is an object with the following fields:
+// 1. date (string for now)
+// 2. location (string for now)
+// 3. difficulty (number in range 0-15)
+// 4. num (number) - number of participants 
+function render_event(event) {
+    console.log("rendering event!");
+    date_field = $("<td></td>")
+        .addClass("classWithPad")
+        .css("width", "150px")
+        .append(event.date); // TODO should span two lines
+    console.log(date_field);
+    loc_field = $("<td></td>")
+        .addClass("classWithPad")
+        .css("width", "150px")
+        .append(event.location + "<br>" + "40 Miles");
+    console.log(loc_field);
+    diff_field = $("<td></td>")
+        .addClass("classWithPad")
+        .addClass("text-center")
+        .css("width", "50px")
+        .append("V" + event.difficulty);
+    console.log(diff_field);
+    num_field = $("<td></td>")
+        .addClass("classWithPad")
+        .css("width", "150px")
+        .append(event.num + " Participants");
+    console.log(num_field);
+    element = $('<a href="#"></a>').addClass("list-group-item").append(
+        $('<table></table>').append(
+            $('<tr></tr>')
+                .append(date_field)
+                .append(loc_field)
+                .append(diff_field)
+                .append(num_field)));
+    console.log(element.html());
+    return element;
+};
+$(document).ready(function () {
+$("#event_list" ).on( "click", "a", function( event ) {
+    $("#event_list a").removeClass("active");
+    $(this).addClass("active");
+    console.log("HI!")
+    event.preventDefault();
+    console.log( $( this ).text() );
+});
+
+console.log("ready!");
+event1 = {  
+            date: "Saturday 5pm<br>October 12",
+            location: "New York, NY",
+            difficulty: 4,
+            num: 100
+        };
+event2 = {  
+            date: "Saturday 5pm<br>October 12",
+            location: "New York, NY",
+            difficulty: 10,
+            num: 2
+        };
+$("#event_list").append(render_event(event1));
+$("#event_list").append(render_event(event2));
+});
+    </script>
+</head>
+
+<body>
+<div class="list-group" id="event_list">
+</div>
+</body>
+
+</html>
