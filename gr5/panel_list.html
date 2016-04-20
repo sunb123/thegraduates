@@ -5,7 +5,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         .list-group {
-            width: 500px
+            width: 600px
         }
         .classWithPad { margin:10px; padding:10px; }
     </style>
@@ -33,7 +33,7 @@ function render_event(event) {
     diff_field = $("<td></td>")
         .addClass("classWithPad")
         .addClass("text-center")
-        .css("width", "50px")
+        .css("width", "150px")
         .append("V" + event.difficulty);
     console.log(diff_field);
     num_field = $("<td></td>")
@@ -51,14 +51,57 @@ function render_event(event) {
     console.log(element.html());
     return element;
 };
+
+// appends the event table, including header, to the parent element
+function append_event_table(events, parent) {
+    table = $("<div></div>")
+    .append(
+    $("<table></table>")
+        .append(
+            $("<tr></tr>").attr("id", "sort_by_buttons")
+            .append($("<td></td>").attr("id", "sort_by_date").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Date and Time"))
+            .append($("<td></td>").attr("id", "sort_by_location").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Location"))
+            .append($("<td></td>").attr("id", "sort_by_difficulty").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Difficulty"))
+            .append($("<td></td>").attr("id", "sort_by_num").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Number of Participants"))))
+    .append(
+        $("<div></div>").addClass("list-group").attr("id", "event_list"));
+    $(parent).append(table);
+    for (var i = 0; i < events.length; i++) {
+        $("#event_list").append(render_event(events[i]));
+    }
+    $("#event_list" ).on( "click", "a", function( event ) {
+        $("#event_list a").removeClass("active");
+        $(this).addClass("active");
+        console.log("HI!")
+        event.preventDefault();
+        console.log( $( this ).text() );
+    });
+    $("#sort_by_buttons").on("click", "td",
+        function(e) {
+            console.log("clicked on a sort by button");
+            $("#sort_by_buttons td").css("font-weight", "");
+            $(this).css('font-weight', 'bold');
+        });
+    
+    // TODO click handlers for the sort button
+    $("#sort_by_date").on("click", function(e) {
+    });
+    $("#sort_by_location").on("click", function(e) {
+    });
+    $("#sort_by_difficulty").on("click", function(e) {
+    });
+    $("#sort_by_num").on("click", function(e) {
+    });
+    
+    $("#sort_by_buttons").on("mouseover", "td",
+        function(e) {
+            console.log("mouseover a sort by button");
+            $("#sort_by_buttons td").css("text-decoration", "");
+            $(this).css('text-decoration', 'underline');
+    });
+};
+
 $(document).ready(function () {
-$("#event_list" ).on( "click", "a", function( event ) {
-    $("#event_list a").removeClass("active");
-    $(this).addClass("active");
-    console.log("HI!")
-    event.preventDefault();
-    console.log( $( this ).text() );
-});
 
 console.log("ready!");
 event1 = {  
@@ -73,15 +116,14 @@ event2 = {
             difficulty: 10,
             num: 2
         };
-$("#event_list").append(render_event(event1));
-$("#event_list").append(render_event(event2));
+events = [event1, event2];
+render_event_table(events, "body");
 });
-    </script>
+
+</script>
 </head>
 
 <body>
-<div class="list-group" id="event_list">
-</div>
 </body>
 
 </html>
