@@ -36,20 +36,29 @@
         <div id="nav-placeholder">
         </div>
 
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
+                    <h1 class="page-header yourEventsHome">
                         Events you're attending
+                    </h1>
+                    <h1 class="page-header upcomingHome">
+                        Upcoming events
+                    </h1>
+                    <h1 class="page-header historyHome">
+                        History
                     </h1>
                     <div class="row">
                         <div class="col-lg-6">
-                            <div id="your_events_table_pane"></div>
+                            <div id="events_table_pane"></div>
                         </div>
-                        <div class="col-lg-6">
+
+                        <div class="col-lg-6" id="nonhistory-rightpanel">
                             <div class="row">
                                 <h3>Event details</h3>
-                                <button class="btn btn-default" id="your_cancel">Cancel</button>
+                                <button class="btn btn-default yourEventsHome" id="cancel">Cancel</button>
+                                <button class="btn btn-default upcomingHome" id="join">Join</button>
                                 <div class="table-responsive">
                                     <table class="table table-hover"  style="width: 80%;">
                                         <thead>
@@ -62,27 +71,87 @@
 
                                         <tbody>
                                         <tr>
-                                            <td id="your_host">Bob Smith</td>
-                                            <td id="your_diff">v5</td>
-                                            <td id="your_time">2016/03/24 15:00 - 17:00 </td>
+                                            <td id="host"></td>
+                                            <td id="diff"></td>
+                                            <td id="time"></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h3> Location</h3>
-                                <div id="your_map" style="width: 500px; height: 400px;"></div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3> Location</h3>
+                                    <div id="map" style="width: 500px; height: 400px;"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="col-lg-6" id="history-rightpanel">
+                        </div>
+
+
                     </div>
                 </div>
 
             </div>
         </div>
+        <!--End yourEventsHome-->
+
+        <!--<div class="container" id="upcomingHome">-->
+            <!--<div class="row">-->
+                <!--<div class="col-lg-12">-->
+                    <!--<h1 class="page-header">-->
+                        <!--Upcoming-->
+                    <!--</h1>-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-6">-->
+                            <!--<h2>Upcoming events</h2>-->
+                            <!--<div id="upcoming_events_table_pane"></div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-lg-6">-->
+                            <!--<div class="row">-->
+                                <!--<h3>Event details</h3><button class="btn btn-default" id="find_join">Join</button>-->
+                                <!--<div class="table-responsive">-->
+                                    <!--<table class="table table-hover"  style="width: 80%;">-->
+                                        <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th>Event host</th>-->
+                                            <!--<th>Difficulty level</th>-->
+                                            <!--<th>Time</th>-->
+                                        <!--</tr>-->
+                                        <!--</thead>-->
+
+                                        <!--<tbody>-->
+                                        <!--<tr>-->
+                                            <!--<td id="find_host">Bob Smith</td>-->
+                                            <!--<td id="find_diff">v5</td>-->
+                                            <!--<td id="find_time">2016/03/24 15:00 - 17:00 </td>-->
+                                        <!--</tr>-->
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-12">-->
+                                    <!--<h3> Location</h3>-->
+                                    <!--<div id="find_map" style="width: 500px; height: 400px;"></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;End findHome&ndash;&gt;-->
+
+
+        <!--End historyHome-->
+
 
     </div>
 

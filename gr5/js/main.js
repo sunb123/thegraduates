@@ -3,8 +3,20 @@
  */
 
 //API key Googlemaps: AIzaSyAPnL9JbDXzSqEi1wkTM_-_STWSamGH5OA
-var goingToAttendEvents = [];
-var pastEvents = [];
+var goingToAttendEvents = [{
+    date: "Saturday 5pm<br>October 22",
+    location: "22 everett st. cambridge, ma 02138",
+    difficulty: 6,
+    numParticipants: 5,
+    host: "Bill"
+}];
+var pastEvents = [{
+    date: "Monday 3pm<br>November 19",
+    location: "130 bowery st. new york, NY 10013",
+    difficulty: 3,
+    numParticipants: 13,
+    host: "Tommy"
+}];
 var upcomingEvents = [{
     date: "Saturday 5pm<br>October 12",
     location: "26 everett st. cambridge, ma 02138",
@@ -19,50 +31,105 @@ var upcomingEvents = [{
     host: "Bob"
 }];
 
-var currentSelectionFindIndex = -1;
-var currentSelectionYourEventIndex = -1;
+
+var currentSelectionIndex = -1;
+//var currentSelectionYourEventIndex = -1;
 var yourEventsType = 0;
 var upcomingEventsType = 1;
+var historyEventsType = 2;
+
+var allEvents = {0: goingToAttendEvents, 1: upcomingEvents, 2: pastEvents};
+
 var upcomingTable;
 var yourEventsTable;
 
 $(document).ready(function(){
 
-    $("#nav-placeholder").load('nav.html');
+    $("#nav-placeholder").load('nav.html', function(){
+
+        handler = function(event, eventIdx){
+            changeRightPanel(event, eventIdx);
+            currentSelectionIndex = eventIdx;
+        };
+        eventsTable = new EventsTable(allEvents, handler);
+        eventsTable.append_event_table("#events_table_pane", yourEventsType);
+
+        $("#yourEventsNav").click(function(){
+
+            showPage(yourEventsType);
+            // Populate table with goingToAttendEvents
+            refreshTable(yourEventsType);
+
+            emptyEventDetails();
+        });
+
+        $("#upcomingNav").on("click", function(){
+
+            showPage(upcomingEventsType);
+            // Populate table with upcomingEvents
+            refreshTable(upcomingEventsType);
+
+            emptyEventDetails();
+        });
+
+        $("#historyNav").on("click", function(){
+            showPage(historyEventsType);
+            // Populate table with pastEvents
+            refreshTable(historyEventsType);
+
+
+
+        });
+
+        // Show only your events initially
+        $(".yourEventsHome").show();
+        $(".upcomingHome").hide();
+        $(".historyHome").hide();
+
+    });
+
     $("#modal-placeholder").load('createEventModal.html');
-    
-    // Handles events in the future
-    find_handler = function(find_event, find_event_index) {
-        console.log(find_event);
 
-        // Find the index of upcoming event selected by user
-        currentSelectionFindIndex = find_event_index;
 
-        // Change the right panel of upcoming events after user selects event
-        changeRightPanel(find_event, upcomingEventsType);
-    };
-    upcomingTable = new EventsTable(upcomingEvents, find_handler);
-    $("#upcoming_events_table_pane").empty();
-    upcomingTable.append_event_table("#upcoming_events_table_pane");
-
-    // Events you're attending
-    yourEventsHandler = function(your_event, your_event_index) {
-
-        // Find the index of upcoming event selected by user
-        currentSelectionYourEventIndex = find_your_event_indexevent_index;
-
-        // Change the right panel of upcoming events after user selects event
-        changeRightPanel(your_event, yourEventsType);
-    };
-    yourEventsTable = new EventsTable(goingToAttendEvents, yourEventsHandler);
-    $("#your_events_table_pane").empty();
-    yourEventsTable.append_event_table("#your_events_table_pane");
-    console.log('goingtoattend',goingToAttendEvents);
-    console.log('upcoming',upcomingEvents);
-    // Initial view, show first event
-    changeRightPanel(upcomingEvents[0], upcomingEventsType);
 
 });
+function refreshTable(type){
+    $("#events_table_pane").empty();
+    eventsTable.append_event_table("#events_table_pane", type);
+}
+
+function showPage(type){
+    switch(type){
+        case yourEventsType:
+            $(".yourEventsHome").show();
+            $(".upcomingHome").hide();
+            $(".historyHome").hide();
+            $("#nonhistory-rightpanel").show();
+            $("#history-rightpanel").hide();
+            break;
+        case upcomingEventsType:
+            $(".yourEventsHome").hide();
+            $(".historyHome").hide();
+            $(".upcomingHome").show();
+            $("#nonhistory-rightpanel").show();
+            $("#history-rightpanel").hide();
+            break;
+        case historyEventsType:
+            $(".yourEventsHome").hide();
+            $(".historyHome").show();
+            $(".upcomingHome").hide();
+            $("#nonhistory-rightpanel").hide();
+            $("#history-rightpanel").show();
+            break;
+
+    }
+}
+
+function emptyEventDetails(){
+    $("#host").empty();
+    $("#diff").empty();
+    $("#time").empty();
+}
 
 function initializeMap(location, type) {
 
@@ -105,21 +172,19 @@ function geocodeAddress(geocoder, resultsMap, location) {
         }
     });
 }
-$("#find_join").on("click", function(){
-    console.log(currentSelectionFindIndex);
-    if(currentSelectionFindIndex != -1){
+$("#join").on("click", function(){
+    console.log(currentSelectionIndex);
+    if(currentSelectionIndex != -1){
         // Move selected event from upcoming events into goingToAttendEvents
-        goingToAttendEvents.push(upcomingEvents[currentSelectionFindIndex]);
-        upcomingEvents.splice(currentSelectionFindIndex, 1);
+        allEvents[yourEventsType].push(allEvents[upcomingEventsType][currentSelectionIndex]);
+        allEvents[upcomingEventsType].splice(currentSelectionIndex, 1);
 
-        $("#upcoming_events_table_pane").empty();
-        upcomingTable.append_event_table("#upcoming_events_table_pane");
-
-        $("#your_events_table_pane").empty();
-        yourEventsTable.append_event_table("#your_events_table_pane");
+        refreshTable(upcomingEventsType);
     }
 
+
 });
+
 
 function changeRightPanel(d, type) {
     if(d == undefined){
@@ -127,15 +192,12 @@ function changeRightPanel(d, type) {
         return;
     }
 
-    if(type == upcomingEventsType){
-        $("#find_host").html(d.host);
-        $("#find_diff").html(d.difficulty);
-        $("#find_time").html(d.date);
-    }else if(type == yourEventsType){
-        $("#your_host").html(d.host);
-        $("#your_diff").html(d.difficulty);
-        $("#your_time").html(d.date);
-    }
+
+    $("#host").html(d.host);
+    $("#diff").html(d.difficulty);
+    $("#time").html(d.date);
+
+
 
 
     initializeMap(d.location, type);
