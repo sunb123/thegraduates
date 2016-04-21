@@ -10,29 +10,30 @@ function EventsTable(events, handler) {
 // 4. num (number) - number of participants 
 // event_idx is an integer reference from the html object to the index of the event
 // object list
+
 this.render_event = function(event, event_idx) {
-    console.log("rendering event!");
+    //console.log("rendering event!");
     date_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-        .append(event.date); // TODO should span two lines
-    console.log(date_field);
+        .append(event.date); //TODO should span two lines
+    //console.log(date_field);
     loc_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
         .append(event.location + "<br>" + "40 Miles");
-    console.log(loc_field);
+    //console.log(loc_field);
     diff_field = $("<td></td>")
         .addClass("classWithPad")
         .addClass("text-center")
         .css("width", "150px")
         .append("V" + event.difficulty);
-    console.log(diff_field);
+    //console.log(diff_field);
     num_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-        .append(event.num + " Participants");
-    console.log(num_field);
+        .append(event.numParticipants + " Participants");
+    //console.log(num_field);
     element = $('<a href="#"></a>').addClass("list-group-item").append(
         $('<table></table>').append(
             $('<tr></tr>')
@@ -41,12 +42,13 @@ this.render_event = function(event, event_idx) {
                 .append(diff_field)
                 .append(num_field)))
         .attr("event_idx", event_idx);
-    console.log(element.html());
+    //console.log(element.html());
     return element;
 };
 
 // appends the event table, including header, to the parent element
 this.append_event_table = function(parent) {
+
     table = $("<div></div>")
     .append(
     $("<table></table>")
@@ -60,17 +62,19 @@ this.append_event_table = function(parent) {
         $("<div></div>").addClass("list-group").attr("id", "event_list"));
     $(parent).append(table);
     for (var i = 0; i < events.length; i++) {
+        console.log("Events.length",events.length);
+        console.log(events);
         $("#event_list").append(this.render_event(events[i], i));
     }
     $("#event_list" ).on( "click", "a", function( event ) {
         $("#event_list a").removeClass("active");
         $(this).addClass("active");
-        console.log("EVENT IDX " + $(this).attr("event_idx"));
+        //console.log("EVENT IDX " + $(this).attr("event_idx"));
         event.preventDefault();
     });
     $("#sort_by_buttons").on("click", "td",
         function(e) {
-            console.log("clicked on a sort by button");
+            //console.log("clicked on a sort by button");
             $("#sort_by_buttons td").css("font-weight", "");
             $(this).css('font-weight', 'bold');
         });
@@ -87,7 +91,7 @@ this.append_event_table = function(parent) {
     
     $("#sort_by_buttons").on("mouseover", "td",
         function(e) {
-            console.log("mouseover a sort by button");
+            //console.log("mouseover a sort by button");
             $("#sort_by_buttons td").css("text-decoration", "");
             $(this).css('text-decoration', 'underline');
     });
@@ -96,8 +100,10 @@ this.append_event_table = function(parent) {
     $(parent).on("click", "a",
         function(e) {
             // find the reference to the event object
+
             event_idx = $(this).attr("event_idx");
-            that.handler(that.events[event_idx])
+            //console.log("event_idx",event_idx);
+            that.handler(that.events[event_idx], event_idx);
         }
     );
 
