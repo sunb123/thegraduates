@@ -45,18 +45,32 @@ $(document).ready(function () {
 
 console.log("ready!");
 event1 = {  
-            date: "Saturday 5pm<br>October 12",
+            date: "Saturday 5pm<br>May 1",
+            date_obj: new Date(2016, 5, 1),
             location: "New York, NY",
+            distance: 40,
             difficulty: 4,
             num: 100
         };
 event2 = {  
-            date: "Saturday 5pm<br>October 12",
+            date: "Saturday 5pm<br>June 1",
+            date_obj: new Date(2016, 6, 1),
             location: "New York, NY",
-            difficulty: 10,
+            location: "New York, NY",
+            difficulty: 100,
+            distance: 24,
             num: 2
         };
-events = [event1, event2];
+event3 = {
+            date: "Saturday 1pm<br>May 5",
+            date_obj: new Date(2016, 5, 5),
+            location: "New York, NY",
+            location: "New York, NY",
+            difficulty: 101,
+            distance: 19,
+            num: 10
+        };
+events = [event1, event2, event3];
 handler = function(climbing_event) {
     console.log(climbing_event);
 };
