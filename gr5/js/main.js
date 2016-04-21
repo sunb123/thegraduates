@@ -67,12 +67,57 @@ function change() {
     initialize();
 }
 
+
+$(document).ready(function () {
+
 change(); 
 
-$("#join").click(function(){
-    $("#modal").modal('hide');
-    swal("Good job!", "You clicked the button!", "success")
-});
+$('#join').click(function () { 
+                swal({
+                    title: "Add this to your upcoming event?",
+                    //text: "You will not be able to recover this imaginary file!",
+                    //type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'Yes!',
+                    cancelButtonText: "No!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Success!", "You successfully add the event!", "success");
+                    } else {
+                        swal("Nope", "This event is not added.", "error");
+                    }
+                });
+            });
+
+$('#cancel').click(function () { 
+                swal({
+                    title: "Cancel the event?",
+                    //text: "You will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'Yes, cancel it!',
+                    cancelButtonText: "No, I still want to attend it",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Cancelled", "You successfully cancelled the event", "success");
+                    } else {
+                        swal("Go", "You will still participate in the event", "success");
+                    }
+                });
+            });
+
+
+
+}); 
+
 
 // $('#join').on('click','td.warning input',function () { 
 //     alert('dfd'); 
