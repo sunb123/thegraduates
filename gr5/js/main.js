@@ -73,24 +73,7 @@ $(document).ready(function () {
 change(); 
 
 $('#join').click(function () { 
-                swal({
-                    title: "Add this to your upcoming event?",
-                    //text: "You will not be able to recover this imaginary file!",
-                    //type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: 'btn-danger',
-                    confirmButtonText: 'Yes!',
-                    cancelButtonText: "No!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        swal("Success!", "You successfully add the event!", "success");
-                    } else {
-                        swal("Nope", "This event is not added.", "error");
-                    }
-                });
+                swal("Success!", "You successfully add the event!", "success");
             });
 
 $('#cancel').click(function () { 
