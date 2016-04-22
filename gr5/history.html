@@ -8,8 +8,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- editable -->
+    <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="bootstrap-editable/js/bootstrap-editable.min.js"></script>
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -18,7 +30,16 @@
     <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3"></script>
+
+
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-1.12.3.js"   integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc="   crossorigin="anonymous"></script>
+    <script src="js/events_table.js"></script>
+    <script src="bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +47,77 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="bower_components/jt.timepicker/jquery.timepicker.css"/>
+    <script src="bower_components/jt.timepicker/jquery.timepicker.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            console.log("ready!");
+            event1 = {
+                date: "Saturday 5pm<br>May 1",
+                date_obj: new Date(2016, 5, 1),
+                location: "New York, NY",
+                distance: 40,
+                difficulty: 4,
+                num: 100,
+                comments: "I loved this climb!",
+            };
+            event2 = {
+                date: "Saturday 5pm<br>June 1",
+                date_obj: new Date(2016, 6, 1),
+                location: "New York, NY",
+                location: "New York, NY",
+                difficulty: 100,
+                distance: 24,
+                num: 2,
+                comments: "This climb was difficult for me.",
+            };
+            event3 = {
+                date: "Saturday 1pm<br>May 5",
+                date_obj: new Date(2016, 5, 5),
+                location: "New York, NY",
+                location: "New York, NY",
+                difficulty: 101,
+                distance: 19,
+                num: 10,
+                comments: "Just another ordinary climbing day",
+            };
+            events = [event1, event2, event3];
+            handler = function(climbing_event) {
+                console.log(climbing_event);
+                $("#comment-area").text(climbing_event.comments)
+            };
+            table = new EventsTable(events, handler);
+// call this after adding or removing elements from events array
+            table.append_event_table("#events_table_pane");
+        }); // end document ready function
+
+    </script>
+
+    <style>
+
+        #item-desc {
+            border-style: solid;
+            border-width: 7px;
+        }
+        #item-desc-content {
+            padding: 0px 20px 20px 20px;
+        }
+        #comment-area {
+            position: relative;
+            padding: 10px;
+            border: 1px solid black;
+            width: 100%;
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -39,18 +131,67 @@
                     History
                 </h1>
             </div>
+
+            <!-- Page Heading -->
+            <div class="row">
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-6" onClick="">
+                    <h3>Events you attend in the past</h3>
+                    <div id="events_table_pane"></div>
+                </div>
+                <div id="item-desc" class="col-lg-6">
+                    <div id="item-desc-content" class="row">
+                        <h3 >Comments</h3><a href="#" id="edit-comment">edit</a>
+                        <label type="text" id="comment-area" class="table-responsive" style="resize:none"></label>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+
+
         </div>
     </div>
 
 
 </div>
 <!-- Modal -->
-<div id="modal-placeholder">
-</div>
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+<div id="newEventModal-placeholder"></div>
+
+
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+        $('#edit-comment').click(function() {
+            var $text = $("#comment-area"),
+                    $input = $('<input type="text" id="comment-area" class="table-responsive" style="resize:none"/>')
+
+            $text.hide()
+                    .after($input);
+
+            $input.val($text.html()).show().focus()
+                    .keypress(function(e) {
+                        var key = e.which
+                        if (key == 13) // enter key
+                        {
+                            $input.hide();
+                            $text.html($input.val())
+                                    .show();
+
+                            return false;
+                        }
+                    })
+                    .focusout(function() {
+                        $input.hide();
+                        $text.show();
+                    })
+        });
+    });
+</script>

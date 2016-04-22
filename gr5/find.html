@@ -8,6 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,12 +36,18 @@
     <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css">
 
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="bower_components/jt.timepicker/jquery.timepicker.css"/>
+    <script src="bower_components/jt.timepicker/jquery.timepicker.js"></script>
     <![endif]-->
 
     <!--TODO TEMPORARY -->
@@ -81,6 +94,17 @@ table.append_event_table("#events_table_pane");
 
 </script>
 
+    <style>
+
+        #item-desc {
+            border-style: solid;
+            border-width: 7px;
+        }
+        #item-desc-content {
+            padding: 0px 20px 20px 20px;
+        }
+    </style>
+
 </head>
 <body>
 <div>
@@ -105,8 +129,8 @@ table.append_event_table("#events_table_pane");
                         <h3>Upcoming events you may be interested in</h3>
                         <div id="events_table_pane"></div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row">
+                    <div id="item-desc" class="col-lg-6">
+                        <div id="item-desc-content" class="row">
                         <h3>Event details
                             <button id="join" type="button" class="btn btn-success btn-lg pull-right sweet-5 data-dismiss="modal" data-backdrop="false"> Join!</button>
                         </h3>
@@ -163,24 +187,6 @@ table.append_event_table("#events_table_pane");
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-
-
-                    <div class="col-lg-6">
-                    </div>
-
-                    <div class="col-lg-6">
-
-                        <h3> Location</h3>
-
-                        <div id="map" style="width: 500px; height: 400px;"></div>
-
-
- <!--                       <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?client=safari&q=boston+ma&oe=UTF-8&ie=UTF8&hq=&hnear=Boston&gl=us&ll=32.448377,-112.074037&spn=0.040679,0.07699&z=14&output=embed"></iframe><br /><small> -->
-
-                   </div>
-                </div>
-                <!-- /.row -->
 
             </div>
             <!-- /.container-fluid -->
@@ -201,14 +207,8 @@ table.append_event_table("#events_table_pane");
 
 </div>
 <!-- Modal -->
-<div id="modal-placeholder">
-</div>
+<div id="newEventModal-placeholder"></div>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
 
 </body>
 </html>

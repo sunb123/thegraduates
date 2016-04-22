@@ -4,8 +4,26 @@
 
 $(document).ready(function(){
 
+    
     $("#nav-placeholder").load('nav.html');
-    $("#modal-placeholder").load('createEventModal.html');
+
+    $("#newEventModal-placeholder").load('createEventModal.html');
+    
+    $("body").delegate(".datepicker", "focusin", function(){
+
+        $('.datepicker').datepicker({
+            dateFormat: 'mm-dd-yy',
+            minDate: '+1d',
+            changeMonth: true,
+            changeYear: true,
+            altField: "#idTourDateDetailsHidden",
+            altFormat: "yy-mm-dd"
+        });
+    });
+
+    $("body").delegate("#timepicker", "focusin", function(){
+       $("#timepicker").timepicker();
+    });
 
 });
 
