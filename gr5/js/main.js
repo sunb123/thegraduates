@@ -8,27 +8,32 @@ var goingToAttendEvents = [{
     location: "22 everett st. cambridge, ma 02138",
     difficulty: 6,
     numParticipants: 5,
-    host: "Bill"
+    host: "Bill",
+    type: 0
 }];
 var pastEvents = [{
     date: "Monday 3pm<br>November 19",
     location: "130 bowery st. new york, NY 10013",
     difficulty: 3,
     numParticipants: 13,
-    host: "Tommy"
+    host: "Tommy",
+    type: 2,
+    comments: "That was a great climb!"
 }];
 var upcomingEvents = [{
     date: "Saturday 5pm<br>October 12",
     location: "26 everett st. cambridge, ma 02138",
     difficulty: 10,
     numParticipants: 2,
-    host: "Andrew"
+    host: "Andrew",
+    type: 1
 }, {
     date: "Monday 3pm<br>November 1",
     location: "132 bowery st. new york, NY 10013",
     difficulty: 4,
     numParticipants: 10,
-    host: "Bob"
+    host: "Bob",
+    type: 1
 }];
 
 
@@ -76,9 +81,6 @@ $(document).ready(function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
-
-
-
         });
 
         // Show only your events initially
@@ -88,8 +90,24 @@ $(document).ready(function(){
 
     });
 
-    $("#modal-placeholder").load('createEventModal.html');
+    // Modal for create new event
+    $("#modal-placeholder").load('createEventModal.html', function(){
+        $("body").delegate(".datepicker", "focusin", function(){
 
+            $('.datepicker').datepicker({
+                dateFormat: 'mm-dd-yy',
+                minDate: '+1d',
+                changeMonth: true,
+                changeYear: true,
+                altField: "#idTourDateDetailsHidden",
+                altFormat: "yy-mm-dd"
+            });
+        });
+        // time picker for modal
+        $("body").delegate("#timepicker", "focusin", function(){
+            $("#timepicker").timepicker();
+        });
+    });
 
 
 });
@@ -104,22 +122,22 @@ function showPage(type){
             $(".yourEventsHome").show();
             $(".upcomingHome").hide();
             $(".historyHome").hide();
-            $("#nonhistory-rightpanel").show();
-            $("#history-rightpanel").hide();
+            $(".nonhistory-rightpanel").show();
+            $(".history-rightpanel").hide();
             break;
         case upcomingEventsType:
             $(".yourEventsHome").hide();
             $(".historyHome").hide();
             $(".upcomingHome").show();
-            $("#nonhistory-rightpanel").show();
-            $("#history-rightpanel").hide();
+            $(".nonhistory-rightpanel").show();
+            $(".history-rightpanel").hide();
             break;
         case historyEventsType:
             $(".yourEventsHome").hide();
             $(".historyHome").show();
             $(".upcomingHome").hide();
-            $("#nonhistory-rightpanel").hide();
-            $("#history-rightpanel").show();
+            $(".nonhistory-rightpanel").hide();
+            $(".history-rightpanel").show();
             break;
 
     }
@@ -131,25 +149,15 @@ function emptyEventDetails(){
     $("#time").empty();
 }
 
-function initializeMap(location, type) {
+function initializeMap(location) {
 
     var mapOptions = {
         zoom: 8,
         center: {lat: -34.397, lng: 150.644}
     };
 
-    var map;
-    if(type == upcomingEventsType){
-        if(document.getElementById('find_map') == null){
-            return;
-        }
-        map = new google.maps.Map(document.getElementById('find_map'), mapOptions);
-    }else if(type == yourEventsType){
-        if(document.getElementById('your_map') == null){
-            return;
-        }
-        map = new google.maps.Map(document.getElementById('your_map'), mapOptions);
-    }
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
 
 
     // Convert address to long/latitude
@@ -181,24 +189,36 @@ $("#join").on("click", function(){
 
         refreshTable(upcomingEventsType);
     }
+});
 
+$("#cancel").on("click", function(){
+    console.log(currentSelectionIndex);
+    if(currentSelectionIndex != -1){
+        // Move selected event from upcoming events into goingToAttendEvents
+        allEvents[upcomingEventsType].push(allEvents[yourEventsType][currentSelectionIndex]);
+        allEvents[yourEventsType].splice(currentSelectionIndex, 1);
 
+        refreshTable(yourEventsType);
+    }
 });
 
 
-function changeRightPanel(d, type) {
+function changeRightPanel(d, eventIdx) {
     if(d == undefined){
         console.log("Wrong");
         return;
     }
+    //console.log('event type:',d.type);
+    // Non history event
+    if(d.type == yourEventsType || d.type == upcomingEventsType){
+        $("#host").html(d.host);
+        $("#diff").html(d.difficulty);
+        $("#time").html(d.date);
+        initializeMap(d.location);
+    }else{// History event
+        $("#comment-area").text(d.comments);
+    }
 
 
-    $("#host").html(d.host);
-    $("#diff").html(d.difficulty);
-    $("#time").html(d.date);
 
-
-
-
-    initializeMap(d.location, type);
 }
