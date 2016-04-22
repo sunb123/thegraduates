@@ -26,6 +26,9 @@
         <script src="js/moment-with-locales.js"></script>
         <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.js" integrity="sha256-IY2gCpIs4xnQTJzCIPlL3uUgSOwVQYD9M8t208V+7KA=" crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="bower_components/jt.timepicker/jquery.timepicker.css"
+        <script src="bower_components/jt.timepicker/jquery.timepicker.js"><</script>
+
         <link rel="stylesheet" href="css/main.css">
 
 
@@ -35,7 +38,7 @@
             }
 <!-- from http://www.electrictoolbox.com/jquey-make-entire-table-row-clickable/ -->
 table#example {
-    border-collapse: collapse;   
+    border-collapse: collapse;
 }
 #example tr {
     background-color: #eee;
@@ -353,7 +356,7 @@ $("#sign-up").click(function(){
     });
 });
         console.log("ready!");
-        
+
         // set up dummy list of activities (for the right side)
         var activities = [];
         // TODO distance should not be part of activity
@@ -362,12 +365,12 @@ $("#sign-up").click(function(){
         activities.push(new Activity("Montreal, Canada", 400, "1/5/2015", 5.5, 2));
         activities.push(new Activity("Providence, RI", 154, "1/6/2015", 4.5, 3));
         activities.push(new Activity("Cambridge, MA", 1, "1/7/2015", 3.5, 5));
-        
+
         // this is the filteed and sorted list
         var processed_acts = activities.slice();
 
         // states for the filtering buttons
-        // TODO SORT BY shoud start out in one of thestates 
+        // TODO SORT BY shoud start out in one of thestates
         var SORT_BY_DATE = "date";
         var SORT_BY_DISTANCE = "distance";
         var DIFFICULTY_UNSELECTED = "unselected";
@@ -394,7 +397,7 @@ $("#sign-up").click(function(){
 
             return "<tr data-toggle=\"modal\" data-target=\"#myModal2\"><td>" + dist + "</td><td>" + act.datestr + "</td><td>" + act.num + "</td><td>" + act.difficulty + "</td></tr>"
         };
-        
+
         sort_by_date = function(acts) {
             comp = function(a, b) {
                 var a = moment(a.datestr).unix();
@@ -415,7 +418,7 @@ $("#sign-up").click(function(){
         sort_by_dist = function(acts) {
             comp = function(a, b) {
                 var da = distance_to_me(a);
-                var db = distance_to_me(b);    
+                var db = distance_to_me(b);
                 console.log("da:" + da);
                 console.log("db:" + db);
                 if (da < db) {
@@ -463,7 +466,7 @@ $("#sign-up").click(function(){
         render_list();
 
     });
-        
+
 var ctx = document.getElementById("myChart").getContext("2d");
 
 var data = {
