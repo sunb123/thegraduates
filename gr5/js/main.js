@@ -109,6 +109,32 @@ $(document).ready(function(){
         });
     });
 
+    $('#edit-comment').click(function() {
+        var $text = $("#comment-area"),
+            $input = $('<textarea id="comment-area" class="table-responsive" style="resize:none"/>')
+
+        $text.hide()
+            .after($input);
+
+        $input.val($text.html()).show().focus()
+            .keypress(function(e) {
+                var key = e.which
+                if (key == 13) // enter key
+                {
+                    $input.hide();
+                    $text.html($input.val())
+                        .show();
+                    // TODO: save the comment in the local storage object
+                    pastEvents[currentSelectionIndex].comments = $input.val();
+                    return false;
+                }
+            })
+            .focusout(function() {
+                $input.hide();
+                $text.show();
+            })
+    });
+
 
 });
 function refreshTable(type){
@@ -157,9 +183,6 @@ function initializeMap(location) {
     };
 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-
-
     // Convert address to long/latitude
     var geocoder = new google.maps.Geocoder();
     geocodeAddress(geocoder, map, location);
