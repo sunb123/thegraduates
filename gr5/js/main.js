@@ -4,7 +4,7 @@
 
 //API key Googlemaps: AIzaSyAPnL9JbDXzSqEi1wkTM_-_STWSamGH5OA
 var goingToAttendEvents = [{
-    date: "Saturday 5pm<br>October 22",
+    date: new Date(),
     location: "22 everett st. cambridge, ma 02138",
     difficulty: 6,
     numParticipants: 5,
@@ -12,7 +12,7 @@ var goingToAttendEvents = [{
     type: 0
 }];
 var pastEvents = [{
-    date: "Monday 3pm<br>November 19",
+    date: new Date(),
     location: "130 bowery st. new york, NY 10013",
     difficulty: 3,
     numParticipants: 13,
@@ -21,14 +21,14 @@ var pastEvents = [{
     comments: "That was a great climb!"
 }];
 var upcomingEvents = [{
-    date: "Saturday 5pm<br>October 12",
+    date: new Date(),
     location: "26 everett st. cambridge, ma 02138",
     difficulty: 10,
     numParticipants: 2,
     host: "Andrew",
     type: 1
 }, {
-    date: "Monday 3pm<br>November 1",
+    date: new Date(),
     location: "132 bowery st. new york, NY 10013",
     difficulty: 4,
     numParticipants: 10,
@@ -92,21 +92,62 @@ $(document).ready(function(){
 
     // Modal for create new event
     $("#modal-placeholder").load('createEventModal.html', function(){
-        $("body").delegate(".datepicker", "focusin", function(){
+        //$('.datepicker').datepicker({
+        //    format: 'mm/dd/yyyy',
+        //    startDate: '-3d'
+        //});
+        //
+        //$("body").delegate(".datepicker", "focusin", function(){
+        //
+        //    $('.datepicker').datepicker({
+        //        dateFormat: 'mm-dd-yy',
+        //        minDate: '+1d',
+        //        changeMonth: true,
+        //        changeYear: true,
+        //        altField: "#idTourDateDetailsHidden",
+        //        altFormat: "yy-mm-dd"
+        //    });
+        //});
+        //// time picker for modal
+        //$("body").delegate("#timepicker", "focusin", function(){
+        //    $("#timepicker").timepicker();
+        //});
+        //$('.datepicker').datepicker({
+        //    format: 'mm-dd-yyyy'
+        //});
 
-            $('.datepicker').datepicker({
-                dateFormat: 'mm-dd-yy',
-                minDate: '+1d',
-                changeMonth: true,
-                changeYear: true,
-                altField: "#idTourDateDetailsHidden",
-                altFormat: "yy-mm-dd"
+        $('.datepicker').daterangepicker({
+            "singleDatePicker": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerIncrement": 15,
+            "startDate": "04/16/2016",
+            locale: {
+                format: 'MM/DD/YYYY h:mm'
+            }
+            //"endDate": "04/22/2016"
+        });
+        //}, function(start, end, label) {
+        //    console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        //});
+
+        $("#newEventSubmit").on("click", function(){
+            console.log($("#difficulty_newEvent").val());
+            console.log($("#location_newEvent").val());
+            console.log($("#timepicker").val());
+            console.log($(".datepicker").val());
+            allEvents[upcomingEventsType].push({
+                date: new Date(Date.parse($(".datepicker").val().replace(/-/g,"/"))),
+                location: $("#location_newEvent").val(),
+                difficulty: $("#difficulty_newEvent").val(),
+                host: "Andrew",
+                type: upcomingEventsType
             });
+
+            //refreshTable(upcomingEventsType);
+            //emptyEventDetails();
         });
-        // time picker for modal
-        $("body").delegate("#timepicker", "focusin", function(){
-            $("#timepicker").timepicker();
-        });
+
     });
 
     $('#edit-comment').click(function() {
@@ -134,6 +175,8 @@ $(document).ready(function(){
                 $text.show();
             })
     });
+
+
 
 
 });
@@ -185,12 +228,37 @@ function initializeMap(location) {
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     // Convert address to long/latitude
     var geocoder = new google.maps.Geocoder();
-    geocodeAddress(geocoder, map, location);
+    setTimeout(geocodeAddress(geocoder, map, location), 100);
+    //geocodeAddress(geocoder, map, location);
 
 }
 
 function geocodeAddress(geocoder, resultsMap, location) {
     var address = location;
+    //geocoder.geocode({address:location}, function (results,status)
+    //    {
+    //        // If that was successful
+    //        if (status == google.maps.GeocoderStatus.OK) {
+    //            resultsMap.setCenter(results[0].geometry.location);
+    //            var marker = new google.maps.Marker({
+    //                map: resultsMap,
+    //                position: results[0].geometry.location
+    //            });
+    //        }
+    //        else {
+    //            // === if we were sending the requests to fast, try this one again and increase the delay
+    //            if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+    //                nextAddress--;
+    //                delay++;
+    //            } else {
+    //                var reason="Code "+status;
+    //                var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
+    //                document.getElementById("messages").innerHTML += msg;
+    //            }
+    //        }
+    //        next();
+    //    }
+    //);
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
             resultsMap.setCenter(results[0].geometry.location);

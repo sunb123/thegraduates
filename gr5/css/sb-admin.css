@@ -25,13 +25,15 @@ body {
 }
 
  #item-desc {
-     border-style: solid;
-     border-width: 7px;
+     /*border-style: solid;*/
+     /*border-width: 7px;*/
  }
 
 #item-desc-content {
     padding: 0px 20px 20px 20px;
 }
+
+/*.datepicker{z-index:1151 !important;}*/
 
 #comment-area {
     position: relative;

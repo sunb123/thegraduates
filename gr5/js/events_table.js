@@ -16,7 +16,7 @@ this.render_event = function(event, event_idx) {
     date_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-        .append(event.date); //TODO should span two lines
+        .append(event.date.toUTCString()); //TODO should span two lines
     //console.log(date_field);
     loc_field = $("<td></td>")
         .addClass("classWithPad")
@@ -29,10 +29,10 @@ this.render_event = function(event, event_idx) {
         .css("width", "150px")
         .append("V" + event.difficulty);
     //console.log(diff_field);
-    num_field = $("<td></td>")
-        .addClass("classWithPad")
-        .css("width", "150px")
-        .append(event.numParticipants + " Participants");
+    //num_field = $("<td></td>")
+    //    .addClass("classWithPad")
+    //    .css("width", "150px")
+    //    .append(event.numParticipants + " Participants");
     //console.log(num_field);
     element = $('<a href="#"></a>').addClass("list-group-item").append(
         $('<table></table>').append(
@@ -40,7 +40,8 @@ this.render_event = function(event, event_idx) {
                 .append(date_field)
                 .append(loc_field)
                 .append(diff_field)
-                .append(num_field)))
+        //        .append(num_field)
+        ))
         .attr("event_idx", event_idx);
     //console.log(element.html());
     return element;
@@ -58,7 +59,8 @@ this.append_event_table = function(parent, type) {
             .append($("<td></td>").attr("id", "sort_by_date").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Date and Time"))
             .append($("<td></td>").attr("id", "sort_by_location").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Location"))
             .append($("<td></td>").attr("id", "sort_by_difficulty").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Difficulty"))
-            .append($("<td></td>").attr("id", "sort_by_num").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Number of Participants"))))
+                //.append($("<td></td>").attr("id", "sort_by_num").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Number of Participants"))
+            ))
     .append(
         $("<div></div>").addClass("list-group").attr("id", "event_list"));
 
