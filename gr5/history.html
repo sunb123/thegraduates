@@ -171,7 +171,7 @@
     $(document).ready(function() {
         $('#edit-comment').click(function() {
             var $text = $("#comment-area"),
-                    $input = $('<input type="text" id="comment-area" class="table-responsive" style="resize:none"/>')
+                    $input = $('<textarea id="comment-area" class="table-responsive" style="resize:none"/>')
 
             $text.hide()
                     .after($input);
@@ -184,7 +184,7 @@
                             $input.hide();
                             $text.html($input.val())
                                     .show();
-
+                            // TODO: save the comment in the local storage object
                             return false;
                         }
                     })
