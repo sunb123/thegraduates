@@ -35,8 +35,7 @@ var upcomingEvents = [{
     host: "Bob",
     type: 1
 }];
-
-
+var addresses = {};
 var currentSelectionIndex = -1;
 //var currentSelectionYourEventIndex = -1;
 var yourEventsType = 0;
@@ -237,17 +236,30 @@ function geocodeAddress(geocoder, resultsMap, location) {
     //        next();
     //    }
     //);
-    geocoder.geocode({'address': address}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location
-            });
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
+
+    if(!(address in addresses)){
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                addresses[address.toString()] = results;
+                resultsMap.setCenter(addresses[address][0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: addresses[address][0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }else{
+        resultsMap.setCenter(addresses[address][0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: addresses[address][0].geometry.location
+        });
+    }
+
+
+
 }
 $("#join").on("click", function(){
     console.log(currentSelectionIndex);
