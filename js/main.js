@@ -49,6 +49,14 @@ var yourEventsTable;
 
 $(document).ready(function(){
 
+
+
+    $("#nav-placeholder").load('index 2.html', function(){
+        
+
+    });
+
+
     $("#nav-placeholder").load('nav.html', function(){
 
         handler = function(event, eventIdx){
