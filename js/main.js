@@ -102,7 +102,6 @@ $(document).ready(function(){
             locale: {
                 format: 'MM/DD/YYYY h:mm'
             }
-            //"endDate": "04/22/2016"
         });
         //}, function(start, end, label) {
         //    console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
@@ -263,22 +262,28 @@ function geocodeAddress(geocoder, resultsMap, location) {
 }
 $("#join").on("click", function(){
     console.log(currentSelectionIndex);
+    swal({   title: "Joined the event!",   
+        timer: 1200,
+        type: 'success',   
+        showConfirmButton: false });
     if(currentSelectionIndex != -1){
         // Move selected event from upcoming events into goingToAttendEvents
         allEvents[yourEventsType].push(allEvents[upcomingEventsType][currentSelectionIndex]);
         allEvents[upcomingEventsType].splice(currentSelectionIndex, 1);
-
         refreshTable(upcomingEventsType);
     }
 });
 
 $("#cancel").on("click", function(){
     console.log(currentSelectionIndex);
+    swal({   title: "Cancelled the event!",   
+        timer: 1000,   
+        type: 'success',
+        showConfirmButton: false });
     if(currentSelectionIndex != -1){
         // Move selected event from upcoming events into goingToAttendEvents
         allEvents[upcomingEventsType].push(allEvents[yourEventsType][currentSelectionIndex]);
         allEvents[yourEventsType].splice(currentSelectionIndex, 1);
-
         refreshTable(yourEventsType);
     }
 });
@@ -294,11 +299,13 @@ function changeRightPanel(d, eventIdx) {
     if(d.type == yourEventsType || d.type == upcomingEventsType){
         $("#host").html(d.host);
         $("#diff").html(d.difficulty);
-        $("#time").html(d.date);
+        $("#time").html(Date(Date.parse($(".datepicker").val().replace(/-/g,"/"))));       
         initializeMap(d.location);
     }else{// History event
         $("#comment-area").text(d.comments);
     }
+
+
 
 
 
