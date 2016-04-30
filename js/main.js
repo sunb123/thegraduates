@@ -298,8 +298,8 @@ function changeRightPanel(d, eventIdx) {
     // Non history event
     if(d.type == yourEventsType || d.type == upcomingEventsType){
         $("#host").html(d.host);
-        $("#diff").html(d.difficulty);
-        $("#time").html(Date(Date.parse($(".datepicker").val().replace(/-/g,"/"))));       
+        $("#diff").html('V' + d.difficulty);
+        $("#time").html(d.date.toISOString().substring(0,10) + '  ' + d.date.toISOString().substring(11,13) + ':00');       
         initializeMap(d.location);
     }else{// History event
         $("#comment-area").text(d.comments);
