@@ -66,25 +66,29 @@ $(document).ready(function(){
         eventsTable = new EventsTable(allEvents, handler);
         eventsTable.append_event_table("#events_table_pane", yourEventsType);
 
-        $("#yourEventsNav").click(function(){
+        navbar_active_toggle = function(current) {
+            $(".nav").find(".active").removeClass("active");
+            $(current).parent().addClass("active");
+        };
 
+        $("#yourEventsNav").click(function(){
+            navbar_active_toggle(this);
             showPage(yourEventsType);
             // Populate table with goingToAttendEvents
             refreshTable(yourEventsType);
-
             emptyEventDetails();
         });
 
         $("#upcomingNav").on("click", function(){
-
+            navbar_active_toggle(this);
             showPage(upcomingEventsType);
             // Populate table with upcomingEvents
             refreshTable(upcomingEventsType);
-
             emptyEventDetails();
         });
 
         $("#historyNav").on("click", function(){
+            navbar_active_toggle(this);
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
@@ -95,6 +99,10 @@ $(document).ready(function(){
         $(".upcomingHome").hide();
         $(".historyHome").hide();
 
+    });
+
+    // toggle active inactive state
+    $(".nav").on("click", function(){
     });
 
     // Modal for create new event
