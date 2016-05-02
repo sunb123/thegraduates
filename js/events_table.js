@@ -186,7 +186,7 @@ this.append_event_table = function(parent, type) {
             console.log("Blur!");
             $("#event_list a").removeClass("active");
             $("#rightpanel").removeClass("selectedPanel");
-            $("#rightpanel").hide();
+            //$("#rightpanel").hide();
         });
 
 };

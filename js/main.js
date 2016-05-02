@@ -282,7 +282,7 @@ function geocodeAddress(geocoder, resultsMap, location) {
                     position: addresses[address][0].geometry.location
                 });
             } else {
-                alert('Geocode was not successful for the following reason: ' + status);
+                //alert('Geocode was not successful for the following reason: ' + status);
             }
         });
     }else{
