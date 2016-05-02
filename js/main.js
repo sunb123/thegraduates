@@ -7,7 +7,6 @@ var goingToAttendEvents = [{
     date: new Date(),
     location: "22 everett st. cambridge, ma 02138",
     difficulty: 6,
-    numParticipants: 5,
     host: "Bill",
     type: 0
 }];
@@ -15,7 +14,6 @@ var pastEvents = [{
     date: new Date(),
     location: "130 bowery st. new york, NY 10013",
     difficulty: 3,
-    numParticipants: 13,
     host: "Tommy",
     type: 2,
     comments: "That was a great climb!"
@@ -24,14 +22,12 @@ var upcomingEvents = [{
     date: new Date(),
     location: "26 everett st. cambridge, ma 02138",
     difficulty: 10,
-    numParticipants: 2,
     host: "Andrew",
     type: 1
 }, {
     date: new Date(),
     location: "132 bowery st. new york, NY 10013",
     difficulty: 4,
-    numParticipants: 10,
     host: "Bob",
     type: 1
 }];
@@ -173,7 +169,8 @@ $(document).ready(function(){
                 location: $("#location_newEvent").val(),
                 difficulty: $("#difficulty_newEvent").val(),
                 host: "Andrew",
-                type: historyEventsType
+                type: historyEventsType,
+                comments: ""
             });
             $("#historyNav").click();
         });
@@ -228,6 +225,7 @@ function refreshTable(type){
 function showPage(type){
     switch(type){
         case yourEventsType:
+            //$("#yourEventsNav").addClass("active-nav");
             $(".yourEventsHome").show();
             $(".upcomingHome").hide();
             $(".historyHome").hide();
@@ -346,6 +344,7 @@ function changeRightPanel(d, eventIdx) {
     if ($(".history-rightpanel").is(":visible")) {
         $("#item-desc-content").show()
         $("#comment-area").text(d.comments);
+        $("#item-desc").addClass("selectedPanel");
         initializeMap(d.location);
     } else {
         //Non history event
@@ -359,10 +358,4 @@ function changeRightPanel(d, eventIdx) {
             $("#rightpanel").addClass("selectedPanel");
         }
     }
-
-
-
-
-
-
 }
