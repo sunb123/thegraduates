@@ -45,14 +45,6 @@ var yourEventsTable;
 
 $(document).ready(function(){
 
-
-    //
-    //$("#nav-placeholder").load('index 2.html', function(){
-    //
-    //
-    //});
-
-
     $("#nav-placeholder").load('nav.html', function(){
 
         handler = function(event, eventIdx){
@@ -84,7 +76,7 @@ $(document).ready(function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
-
+            emptyEventDetails();
         });
 
         // Show only your events initially
@@ -245,6 +237,7 @@ function emptyEventDetails(){
     $("#diff").empty();
     $("#time").empty();
     $("#rightpanel").hide();
+    $("#item-desc").hide();
 }
 
 function initializeMap(location) {
@@ -334,6 +327,7 @@ function changeRightPanel(d, eventIdx) {
     if ($(".history-rightpanel").is(":visible")) {
         $("#item-desc-content").show()
         $("#comment-area").text(d.comments);
+        $("#item-desc").show();
         $("#item-desc").addClass("selectedPanel");
         initializeMap(d.location);
     } else {
