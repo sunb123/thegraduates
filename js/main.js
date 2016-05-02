@@ -101,13 +101,15 @@ $(document).ready(function(){
     // Modal for create new event
     $("#modal-placeholder").load('createEventModal.html', function(){
 
+        var date = new Date();
+        var dateString = date.toLocaleDateString("en-US");
 
         $('.datepicker').daterangepicker({
             "singleDatePicker": true,
             "timePicker": true,
             "timePicker24Hour": true,
             "timePickerIncrement": 15,
-            "startDate": "04/16/2016",
+            "startDate": dateString,
             locale: {
                 format: 'MM/DD/YYYY h:mm'
             }
@@ -133,6 +135,40 @@ $(document).ready(function(){
             //emptyEventDetails();
         });
     });
+
+    // Modal for historical event
+    $("#history-modal-placeholder").load('createHistoricalEvent.html', function(){
+
+        var date = new Date();
+        var dateString = date.toLocaleDateString("en-US");
+
+        $('.datepicker-historical').daterangepicker({
+            "singleDatePicker": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerIncrement": 15,
+            "endDate": dateString,
+            "maxDate": dateString,
+            locale: {
+                format: 'MM/DD/YYYY h:mm'
+            }
+        });
+
+        $("#newHistoricalEventSubmit").on("click", function(){
+            console.log($("#difficulty_newEvent").val());
+            console.log($("#location_newEvent").val());
+            console.log($("#timepicker").val());
+            console.log($(".datepicker-historical").val());
+            allEvents[upcomingEventsType].push({
+                date: new Date(Date.parse($(".datepicker-historical").val().replace(/-/g,"/"))),
+                location: $("#location_newEvent").val(),
+                difficulty: $("#difficulty_newEvent").val(),
+                host: "Andrew",
+                type: upcomingEventsType
+            });
+        });
+    });
+
 
     $('#edit-comment').click(function() {
         var $text = $("#comment-area"),

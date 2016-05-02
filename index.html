@@ -64,9 +64,18 @@
                     <h1 class="page-header upcomingHome">
                         Upcoming events
                     </h1>
-                    <h1 class="page-header historyHome">
-                        History
-                    </h1>
+                    <div class="page-header historyHome">
+                        <div class="row">
+                            <h1 class="col-lg-11">
+                                History
+                            </h1>
+
+                            <div id="createEventNav" class="col-lg-1" style="float: right">
+                                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#newHistoricalEventModal">+ Add History</button>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="row">
                         <div class="col-lg-6">
@@ -140,6 +149,8 @@
     <div id="modal-placeholder">
     </div>
 
+    <div id="history-modal-placeholder">
+    </div>
 
 </body>
 <script src="js/events_table.js"></script>
