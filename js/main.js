@@ -111,7 +111,7 @@ $(document).ready(function(){
             "timePickerIncrement": 15,
             "startDate": dateString,
             locale: {
-                format: 'MM/DD/YYYY h:mm'
+                format: 'DD/MMM/YYY'
             }
         });
         //}, function(start, end, label) {
@@ -160,7 +160,7 @@ $(document).ready(function(){
             console.log($("#timepicker").val());
             console.log($(".datepicker-historical").val());
             allEvents[historyEventsType].push({
-                date: new Date(Date.parse($(".datepicker-historical").val().replace(/-/g,"/"))),
+                date: new Date(Date.parse($(".datepicker-historical").val())), //.replace(/-/g,"/"))),
                 location: $("#location_newEvent").val(),
                 difficulty: $("#difficulty_newEvent").val(),
                 host: "Andrew",
