@@ -6,6 +6,7 @@
 var goingToAttendEvents = [{
     date: new Date(),
     location: "22 everett st. cambridge, ma 02138",
+    distance: 2,
     difficulty: 6,
     host: "Bill",
     type: 0
@@ -13,6 +14,7 @@ var goingToAttendEvents = [{
 var pastEvents = [{
     date: new Date(),
     location: "130 bowery st. new york, NY 10013",
+    distance: 400,
     difficulty: 3,
     host: "Tommy",
     type: 2,
@@ -21,12 +23,14 @@ var pastEvents = [{
 var upcomingEvents = [{
     date: new Date(),
     location: "26 everett st. cambridge, ma 02138",
+    distance: 2,
     difficulty: 10,
     host: "Andrew",
     type: 1
 }, {
     date: new Date(),
     location: "132 bowery st. new york, NY 10013",
+    distance: 400,
     difficulty: 4,
     host: "Bob",
     type: 1
@@ -127,6 +131,7 @@ $(document).ready(function(){
             allEvents[upcomingEventsType].push({
                 date: new Date(Date.parse($(".datepicker").val().replace(/-/g,"/"))),
                 location: $("#location_newEvent").val(),
+                distance: Math.floor(Math.random() * 40),
                 difficulty: $("#difficulty_newEvent").val(),
                 host: "Andrew",
                 type: upcomingEventsType
@@ -168,6 +173,7 @@ $(document).ready(function(){
             allEvents[historyEventsType].push({
                 date: new Date(Date.parse($(".datepicker-historical").val())), //.replace(/-/g,"/"))),
                 location: $("#location_newEvent").val(),
+                distance: Math.floor(Math.random() * 40),
                 difficulty: $("#difficulty_newEvent").val(),
                 host: "Andrew",
                 type: historyEventsType,

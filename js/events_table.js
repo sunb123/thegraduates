@@ -25,7 +25,7 @@ this.render_event = function(event, event_idx) {
     loc_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-        .append(event.location + "<br>" + "40 Miles");
+        .append(event.location + "<br>" + event.distance + " miles away");
     //console.log(loc_field);
     diff_field = $("<td></td>")
         .addClass("classWithPad")
