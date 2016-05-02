@@ -159,12 +159,12 @@ $(document).ready(function(){
             console.log($("#location_newEvent").val());
             console.log($("#timepicker").val());
             console.log($(".datepicker-historical").val());
-            allEvents[upcomingEventsType].push({
+            allEvents[historyEventsType].push({
                 date: new Date(Date.parse($(".datepicker-historical").val().replace(/-/g,"/"))),
                 location: $("#location_newEvent").val(),
                 difficulty: $("#difficulty_newEvent").val(),
                 host: "Andrew",
-                type: upcomingEventsType
+                type: historyEventsType
             });
         });
     });
