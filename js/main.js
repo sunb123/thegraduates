@@ -340,10 +340,11 @@ function changeRightPanel(d, eventIdx) {
     } else {
         //Non history event
         if(d.type == yourEventsType || d.type == upcomingEventsType){
+            var time = d.date.toLocaleTimeString('en-US');
             $("#rightpanel").show();
             $("#host").html(d.host);
             $("#diff").html('V' + d.difficulty);
-            $("#time").html(d.date.toISOString().substring(0,10) + '  ' + d.date.toISOString().substring(11,13) + ':00');
+            $("#time").html(d.date.toLocaleDateString('en-US') + '  ' + time.substring(0,time.lastIndexOf(":")) + time.substring(time.lastIndexOf(" ")));
             initializeMap(d.location);
             $("#rightpanel").addClass("selectedPanel");
         }
