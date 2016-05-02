@@ -5,7 +5,7 @@
 //API key Googlemaps: AIzaSyAPnL9JbDXzSqEi1wkTM_-_STWSamGH5OA
 var goingToAttendEvents = [{
     date: new Date("2016/5/4 14:00"),
-    location: "22 everett st. cambridge, ma 02138",
+    location: "22 Everett St. Cambridge, MA 02138",
     distance: 2,
     difficulty: 6,
     host: "Bill",
@@ -13,23 +13,42 @@ var goingToAttendEvents = [{
 }];
 var pastEvents = [{
     date: new Date("2016/3/23 13:00"),
-    location: "130 bowery st. new york, NY 10013",
+    location: "130 Bowery St. New York, NY 10013",
     distance: 400,
     difficulty: 3,
     host: "Tommy",
     type: 2,
     comments: "That was a great climb!"
+},
+{
+    date: new Date(),
+    location: "791 Walnut St, Newton Centre, MA 02459",
+    distance: 35,
+    difficulty: 3,
+    host: "Cassandra",
+    type: 2,
+    comments: "Too easy and too short."
+},
+{
+    date: new Date(),
+    location: "235 College St, Burlington, VT 05401",
+    distance: 243,
+    difficulty: 8,
+    host: "Richard",
+    type: 2,
+    comments: "Difficult but well worth it"
 }];
 var upcomingEvents = [{
     date: new Date("2016/6/1 15:00"),
-    location: "26 everett st. cambridge, ma 02138",
+    location: "26 Everett St. Cambridge, MA 02138",
     distance: 2,
     difficulty: 10,
     host: "Andrew",
     type: 1
 }, {
     date: new Date("2016/7/3 11:00"),
-    location: "132 bowery st. new york, NY 10013",
+    date: new Date(),
+    location: "132 Bowery St. New York, NY 10013",
     distance: 400,
     difficulty: 4,
     host: "Bob",
