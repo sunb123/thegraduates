@@ -49,6 +49,14 @@ var yourEventsTable;
 
 $(document).ready(function(){
 
+
+    //
+    //$("#nav-placeholder").load('index 2.html', function(){
+    //
+    //
+    //});
+
+
     $("#nav-placeholder").load('nav.html', function(){
 
         handler = function(event, eventIdx){
@@ -57,7 +65,7 @@ $(document).ready(function(){
         };
         eventsTable = new EventsTable(allEvents, handler);
         eventsTable.append_event_table("#events_table_pane", yourEventsType);
-
+        $("#rightpanel").hide();
         $("#yourEventsNav").click(function(){
 
             showPage(yourEventsType);
@@ -80,6 +88,7 @@ $(document).ready(function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
+
         });
 
         // Show only your events initially
@@ -92,17 +101,18 @@ $(document).ready(function(){
     // Modal for create new event
     $("#modal-placeholder").load('createEventModal.html', function(){
 
+        var date = new Date();
+        var dateString = date.toLocaleDateString("en-US");
 
         $('.datepicker').daterangepicker({
             "singleDatePicker": true,
             "timePicker": true,
             "timePicker24Hour": true,
             "timePickerIncrement": 15,
-            "startDate": "04/16/2016",
+            "startDate": dateString,
             locale: {
                 format: 'MM/DD/YYYY h:mm'
             }
-            //"endDate": "04/22/2016"
         });
         //}, function(start, end, label) {
         //    console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
@@ -124,16 +134,49 @@ $(document).ready(function(){
             //refreshTable(upcomingEventsType);
             //emptyEventDetails();
         });
-
     });
+
+    // Modal for historical event
+    $("#history-modal-placeholder").load('createHistoricalEvent.html', function(){
+
+        var date = new Date();
+        var dateString = date.toLocaleDateString("en-US");
+
+        $('.datepicker-historical').daterangepicker({
+            "singleDatePicker": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "timePickerIncrement": 15,
+            "endDate": dateString,
+            "maxDate": dateString,
+            locale: {
+                format: 'MM/DD/YYYY h:mm'
+            }
+        });
+
+        $("#newHistoricalEventSubmit").on("click", function(){
+            console.log($("#difficulty_newEvent").val());
+            console.log($("#location_newEvent").val());
+            console.log($("#timepicker").val());
+            console.log($(".datepicker-historical").val());
+            allEvents[historyEventsType].push({
+                date: new Date(Date.parse($(".datepicker-historical").val().replace(/-/g,"/"))),
+                location: $("#location_newEvent").val(),
+                difficulty: $("#difficulty_newEvent").val(),
+                host: "Andrew",
+                type: historyEventsType
+            });
+        });
+    });
+
 
     $('#edit-comment').click(function() {
         var $text = $("#comment-area"),
-            $input = $('<textarea id="comment-area" class="table-responsive" style="resize:none"/>')
+            $input = $('<textarea id="comment-area1" class="table-responsive" style="resize:none"/>')
 
         $text.hide()
             .after($input);
-
+        
         $input.val($text.html()).show().focus()
             .keypress(function(e) {
                 var key = e.which
@@ -153,10 +196,20 @@ $(document).ready(function(){
             })
     });
 
+    $('#comment-save').click(function () {
+        var $text = $("#comment-area"),
+            $input = $('#comment-area1')
 
+        $input.hide();
+        $text.html($input.val())
+            .show();
+        // TODO: save the comment in the local storage object
+        pastEvents[currentSelectionIndex].comments = $input.val();
+    })
 
 
 });
+
 function refreshTable(type){
     $("#events_table_pane").empty();
     eventsTable.append_event_table("#events_table_pane", type);
@@ -193,6 +246,7 @@ function emptyEventDetails(){
     $("#host").empty();
     $("#diff").empty();
     $("#time").empty();
+    $("#rightpanel").hide();
 }
 
 function initializeMap(location) {
@@ -203,10 +257,15 @@ function initializeMap(location) {
     };
 
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var map_history = new google.maps.Map(document.getElementById('map-history'), mapOptions);
+
     // Convert address to long/latitude
     var geocoder = new google.maps.Geocoder();
     setTimeout(geocodeAddress(geocoder, map, location), 100);
     //geocodeAddress(geocoder, map, location);
+
+    var geocoderHistory = new google.maps.Geocoder();
+    setTimeout(geocodeAddress(geocoderHistory, map_history, location), 100);
 
 }
 
@@ -239,22 +298,28 @@ function geocodeAddress(geocoder, resultsMap, location) {
 }
 $("#join").on("click", function(){
     console.log(currentSelectionIndex);
+    swal({   title: "Joined the event!",   
+        timer: 1200,
+        type: 'success',   
+        showConfirmButton: false });
     if(currentSelectionIndex != -1){
         // Move selected event from upcoming events into goingToAttendEvents
         allEvents[yourEventsType].push(allEvents[upcomingEventsType][currentSelectionIndex]);
         allEvents[upcomingEventsType].splice(currentSelectionIndex, 1);
-
         refreshTable(upcomingEventsType);
     }
 });
 
 $("#cancel").on("click", function(){
     console.log(currentSelectionIndex);
+    swal({   title: "Cancelled the event!",   
+        timer: 1000,   
+        type: 'success',
+        showConfirmButton: false });
     if(currentSelectionIndex != -1){
         // Move selected event from upcoming events into goingToAttendEvents
         allEvents[upcomingEventsType].push(allEvents[yourEventsType][currentSelectionIndex]);
         allEvents[yourEventsType].splice(currentSelectionIndex, 1);
-
         refreshTable(yourEventsType);
     }
 });
@@ -265,17 +330,22 @@ function changeRightPanel(d, eventIdx) {
         console.log("Wrong");
         return;
     }
+    $("#rightpanel").show();
     //console.log('event type:',d.type);
     // Non history event
     if(d.type == yourEventsType || d.type == upcomingEventsType){
         $("#host").html(d.host);
-        $("#diff").html(d.difficulty);
-        $("#time").html(d.date);
+        $("#diff").html('V' + d.difficulty);
+        $("#time").html(d.date.toISOString().substring(0,10) + '  ' + d.date.toISOString().substring(11,13) + ':00');       
         initializeMap(d.location);
-        $("#rightpanel").toggleClass("selectedPanel");
+        $("#rightpanel").addClass("selectedPanel");
     }else{// History event
+        $("#item-desc-content").show()
         $("#comment-area").text(d.comments);
+        initializeMap(d.location);
     }
+
+
 
 
 

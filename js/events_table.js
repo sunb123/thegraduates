@@ -185,7 +185,8 @@ this.append_event_table = function(parent, type) {
         .on("focusout", function(){
             console.log("Blur!");
             $("#event_list a").removeClass("active");
-            $("#rightpanel").toggleClass("selectedPanel");
+            $("#rightpanel").removeClass("selectedPanel");
+            $("#rightpanel").hide();
         });
 
 };

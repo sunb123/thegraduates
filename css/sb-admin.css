@@ -18,6 +18,17 @@ body {
     background-color: #fff;
 }
 
+#button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 @media(min-width:768px) {
     body {
         margin-top: 50px;
@@ -27,8 +38,8 @@ body {
     padding-top: 20px;
 }
 .selectedPanel{
-    border: 1px solid #1b6d85;
-
+    border: 2px solid #1b6d85;
+    /*padding: 10px 10px 10px 10px;*/
 }
 
  #item-desc {
@@ -43,6 +54,14 @@ body {
 /*.datepicker{z-index:1151 !important;}*/
 
 #comment-area {
+    position: relative;
+    padding: 10px;
+    border: 1px solid black;
+    width: 100%;
+    height: 150px;
+}
+
+#comment-area1 {
     position: relative;
     padding: 10px;
     border: 1px solid black;
