@@ -119,6 +119,10 @@ $(document).ready(function(){
         //});
 
         $("#newEventSubmit").on("click", function(){
+            swal({   title: "Created a New Event!",
+            timer: 1200,
+            type: 'success',
+            showConfirmButton: false });
             console.log($("#difficulty_newEvent").val());
             console.log($("#location_newEvent").val());
             console.log($("#timepicker").val());
@@ -130,6 +134,7 @@ $(document).ready(function(){
                 host: "Andrew",
                 type: upcomingEventsType
             });
+            $("#upcomingNav").click();
 
             //refreshTable(upcomingEventsType);
             //emptyEventDetails();
@@ -155,6 +160,10 @@ $(document).ready(function(){
         });
 
         $("#newHistoricalEventSubmit").on("click", function(){
+            swal({   title: "Added Historical Event!",
+                timer: 1200,
+                type: 'success',
+                showConfirmButton: false });
             console.log($("#difficulty_newEvent").val());
             console.log($("#location_newEvent").val());
             console.log($("#timepicker").val());
@@ -166,6 +175,7 @@ $(document).ready(function(){
                 host: "Andrew",
                 type: historyEventsType
             });
+            $("#historyNav").click();
         });
     });
 
