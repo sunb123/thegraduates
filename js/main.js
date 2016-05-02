@@ -41,6 +41,8 @@ var currentSelectionIndex = -1;
 var yourEventsType = 0;
 var upcomingEventsType = 1;
 var historyEventsType = 2;
+// stats out in current event page
+var currentType = yourEventsType;
 
 var allEvents = {0: goingToAttendEvents, 1: upcomingEvents, 2: pastEvents};
 
@@ -49,19 +51,14 @@ var yourEventsTable;
 
 $(document).ready(function(){
 
-
-    //
-    //$("#nav-placeholder").load('index 2.html', function(){
-    //
-    //
-    //});
-
-
     $("#nav-placeholder").load('nav.html', function(){
 
-        handler = function(event, eventIdx){
-            changeRightPanel(event, eventIdx);
-            currentSelectionIndex = eventIdx;
+        handler = function(event, eventIdx, eventType){
+            // only trigger event if we are the active event type
+            if (eventType == currentType) {
+                changeRightPanel(event, eventIdx);
+                currentSelectionIndex = eventIdx;
+            }
         };
         eventsTable = new EventsTable(allEvents, handler);
         eventsTable.append_event_table("#events_table_pane", yourEventsType);
@@ -73,6 +70,7 @@ $(document).ready(function(){
             refreshTable(yourEventsType);
 
             emptyEventDetails();
+            currentType = yourEventsType;
         });
 
         $("#upcomingNav").on("click", function(){
@@ -82,13 +80,14 @@ $(document).ready(function(){
             refreshTable(upcomingEventsType);
 
             emptyEventDetails();
+            currentType = upcomingEventsType;
         });
 
         $("#historyNav").on("click", function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
-
+            currentType = historyEventsType;
         });
 
         // Show only your events initially

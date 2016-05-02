@@ -181,7 +181,7 @@ this.append_event_table = function(parent, type) {
         function(e) {
             // find the reference to the event object
             event_idx = $(this).attr("event_idx");
-            that.handler(that.events[type][event_idx], event_idx);
+            that.handler(that.events[type][event_idx], event_idx, type);
         }
     )
         .on("focusout", function(){
