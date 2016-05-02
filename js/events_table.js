@@ -14,12 +14,13 @@ function EventsTable(events, handler) {
 
 this.render_event = function(event, event_idx) {
     //console.log("rendering event!");
+    var time = event.date.toLocaleTimeString('en-US');
     date_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-//        .append(event.date.toUTCString().substring(0,10) + '  ' + event.date.toUTCString().substring(11,13) + ':00');       
-        .append(event.date.toISOString().substring(0,10) + '  ' + event.date.toISOString().substring(11,13) + ':00');       
-
+//        .append(event.date.toUTCString().substring(0,10) + '  ' + event.date.toUTCString().substring(11,13) + ':00');
+//        .append(event.date.toISOString().substring(0,10) + '  ' + event.date.toISOString().substring(11,13) + ':00');
+        .append(event.date.toLocaleDateString('en-US') + '  ' + time.substring(0,time.lastIndexOf(":")) + time.substring(time.lastIndexOf(" ")));
     //console.log(date_field);
     loc_field = $("<td></td>")
         .addClass("classWithPad")
