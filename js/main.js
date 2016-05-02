@@ -218,6 +218,7 @@ function refreshTable(type){
 function showPage(type){
     switch(type){
         case yourEventsType:
+            //$("#yourEventsNav").addClass("active-nav");
             $(".yourEventsHome").show();
             $(".upcomingHome").hide();
             $(".historyHome").hide();
