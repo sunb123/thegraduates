@@ -104,7 +104,7 @@ $(document).ready(function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
-            emptyEventDetails();
+            //emptyEventDetails();
         });
 
         // Show only your events initially
