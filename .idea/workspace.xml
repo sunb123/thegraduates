@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80ecf713-9e5a-42b8-aa39-89a1f2e5fa36" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nav.html" afterPath="$PROJECT_DIR$/nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="thegraduates.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.72549">
-              <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.45655173">
+              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -40,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nav.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nav.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41888297">
-              <caret line="21" column="125" selection-start-line="21" selection-start-column="125" selection-end-line="21" selection-end-column="125" />
+            <state vertical-scroll-proportion="-6.25">
+              <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -73,11 +72,21 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.555555">
-              <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
+            <state vertical-scroll-proportion="-13.111111">
+              <caret line="163" column="57" selection-start-line="163" selection-start-column="57" selection-end-line="163" selection-end-column="57" />
               <folding>
                 <marker date="1462207925000" expanded="true" signature="5910:5921" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createHistoricalEvent.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/createHistoricalEvent.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.875">
+              <caret line="11" column="103" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="103" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,11 +116,11 @@
         <option value="$PROJECT_DIR$/gr5/js/main.js" />
         <option value="$PROJECT_DIR$/gr5/createEventModal.html" />
         <option value="$PROJECT_DIR$/css/css/main.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/sb-admin.css" />
         <option value="$PROJECT_DIR$/js/events_table.js" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/nav.html" />
+        <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -518,10 +527,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createHistoricalEvent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="11" column="103" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.555555">
-          <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
+        <state vertical-scroll-proportion="-13.111111">
+          <caret line="163" column="57" selection-start-line="163" selection-start-column="57" selection-end-line="163" selection-end-column="57" />
           <folding>
             <marker date="1462207925000" expanded="true" signature="5910:5921" placeholder="..." />
           </folding>
@@ -530,8 +555,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.72549">
-          <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.45655173">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -539,14 +564,6 @@
             <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41888297">
-          <caret line="21" column="125" selection-start-line="21" selection-start-column="125" selection-end-line="21" selection-end-column="125" />
-          <folding />
         </state>
       </provider>
     </entry>
