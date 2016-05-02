@@ -4,7 +4,7 @@
 
 //API key Googlemaps: AIzaSyAPnL9JbDXzSqEi1wkTM_-_STWSamGH5OA
 var goingToAttendEvents = [{
-    date: new Date(),
+    date: new Date("2016/5/4 14:00"),
     location: "22 everett st. cambridge, ma 02138",
     distance: 2,
     difficulty: 6,
@@ -12,7 +12,7 @@ var goingToAttendEvents = [{
     type: 0
 }];
 var pastEvents = [{
-    date: new Date(),
+    date: new Date("2016/3/23 13:00"),
     location: "130 bowery st. new york, NY 10013",
     distance: 400,
     difficulty: 3,
@@ -21,14 +21,14 @@ var pastEvents = [{
     comments: "That was a great climb!"
 }];
 var upcomingEvents = [{
-    date: new Date(),
+    date: new Date("2016/6/1 15:00"),
     location: "26 everett st. cambridge, ma 02138",
     distance: 2,
     difficulty: 10,
     host: "Andrew",
     type: 1
 }, {
-    date: new Date(),
+    date: new Date("2016/7/3 11:00"),
     location: "132 bowery st. new york, NY 10013",
     distance: 400,
     difficulty: 4,
