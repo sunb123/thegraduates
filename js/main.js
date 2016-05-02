@@ -54,25 +54,30 @@ $(document).ready(function(){
         eventsTable = new EventsTable(allEvents, handler);
         eventsTable.append_event_table("#events_table_pane", yourEventsType);
         $("#rightpanel").hide();
-        $("#yourEventsNav").click(function(){
 
+        navbar_active_toggle = function(current) {
+            $(".nav").find(".active").removeClass("active");
+            $(current).parent().addClass("active");
+        };
+
+        $("#yourEventsNav").click(function(){
+            navbar_active_toggle(this);
             showPage(yourEventsType);
             // Populate table with goingToAttendEvents
             refreshTable(yourEventsType);
-
             emptyEventDetails();
         });
 
         $("#upcomingNav").on("click", function(){
-
+            navbar_active_toggle(this);
             showPage(upcomingEventsType);
             // Populate table with upcomingEvents
             refreshTable(upcomingEventsType);
-
             emptyEventDetails();
         });
 
         $("#historyNav").on("click", function(){
+            navbar_active_toggle(this);
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
@@ -84,6 +89,10 @@ $(document).ready(function(){
         $(".upcomingHome").hide();
         $(".historyHome").hide();
 
+    });
+
+    // toggle active inactive state
+    $(".nav").on("click", function(){
     });
 
     // Modal for create new event
@@ -107,6 +116,10 @@ $(document).ready(function(){
         //});
 
         $("#newEventSubmit").on("click", function(){
+            swal({   title: "Created a New Event!",
+            timer: 1200,
+            type: 'success',
+            showConfirmButton: false });
             console.log($("#difficulty_newEvent").val());
             console.log($("#location_newEvent").val());
             console.log($("#timepicker").val());
@@ -118,6 +131,7 @@ $(document).ready(function(){
                 host: "Andrew",
                 type: upcomingEventsType
             });
+            $("#upcomingNav").click();
 
             //refreshTable(upcomingEventsType);
             //emptyEventDetails();
@@ -143,6 +157,10 @@ $(document).ready(function(){
         });
 
         $("#newHistoricalEventSubmit").on("click", function(){
+            swal({   title: "Added Historical Event!",
+                timer: 1200,
+                type: 'success',
+                showConfirmButton: false });
             console.log($("#difficulty_newEvent").val());
             console.log($("#location_newEvent").val());
             console.log($("#timepicker").val());
@@ -155,6 +173,7 @@ $(document).ready(function(){
                 type: historyEventsType,
                 comments: ""
             });
+            $("#historyNav").click();
         });
     });
 
