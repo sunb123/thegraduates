@@ -166,15 +166,15 @@ $(document).ready(function(){
                 timer: 1200,
                 type: 'success',
                 showConfirmButton: false });
-            console.log($("#difficulty_newEvent").val());
-            console.log($("#location_newEvent").val());
+            console.log($("#difficulty_historicalEvent").val());
+            console.log($("#location_historicalEvent").val());
             console.log($("#timepicker").val());
             console.log($(".datepicker-historical").val());
             allEvents[historyEventsType].push({
                 date: new Date(Date.parse($(".datepicker-historical").val())), //.replace(/-/g,"/"))),
-                location: $("#location_newEvent").val(),
+                location: $("#location_historicalEvent").val(),
                 distance: Math.floor(Math.random() * 40),
-                difficulty: $("#difficulty_newEvent").val(),
+                difficulty: $("#difficulty_historicalEvent").val(),
                 host: "Andrew",
                 type: historyEventsType,
                 comments: ""
