@@ -11,7 +11,7 @@ function EventsTable(events, handler) {
 // 4. num (number) - number of participants 
 // event_idx is an integer reference from the html object to the index of the event
 // object list
-
+    this.difficulty_list = ["VB","V0","V0+","V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","V12","V13","V14","V15","V16","V17","V18"];
 this.render_event = function(event, event_idx) {
     //console.log("rendering event!");
     var time = event.date.toLocaleTimeString('en-US');
@@ -31,7 +31,7 @@ this.render_event = function(event, event_idx) {
         .addClass("classWithPad")
         .addClass("text-center")
         .css("width", "150px")
-        .append("V" + event.difficulty);
+        .append(this.difficulty_list[event.difficulty]);
     //console.log(diff_field);
     //num_field = $("<td></td>")
     //    .addClass("classWithPad")

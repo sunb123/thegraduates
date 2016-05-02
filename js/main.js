@@ -104,7 +104,7 @@ $(document).ready(function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
-            emptyEventDetails();
+            //emptyEventDetails();
         });
 
         // Show only your events initially
@@ -131,7 +131,7 @@ $(document).ready(function(){
             "timePickerIncrement": 15,
             "startDate": dateString,
             locale: {
-                format: 'DD/MMM/YYY'
+                format: 'MM/DD/YYYY h:mm'
             }
         });
         //}, function(start, end, label) {
