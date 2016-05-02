@@ -181,7 +181,12 @@ this.append_event_table = function(parent, type) {
             event_idx = $(this).attr("event_idx");
             that.handler(that.events[type][event_idx], event_idx);
         }
-    );
+    )
+        .on("focusout", function(){
+            console.log("Blur!");
+            $("#event_list a").removeClass("active");
+            $("#rightpanel").toggleClass("selectedPanel");
+        });
 
 };
 

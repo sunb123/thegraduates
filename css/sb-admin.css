@@ -23,6 +23,13 @@ body {
         margin-top: 50px;
     }
 }
+#events_table_pane {
+    padding-top: 20px;
+}
+.selectedPanel{
+    border: 1px solid #1b6d85;
+
+}
 
  #item-desc {
      /*border-style: solid;*/

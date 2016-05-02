@@ -212,30 +212,6 @@ function initializeMap(location) {
 
 function geocodeAddress(geocoder, resultsMap, location) {
     var address = location;
-    //geocoder.geocode({address:location}, function (results,status)
-    //    {
-    //        // If that was successful
-    //        if (status == google.maps.GeocoderStatus.OK) {
-    //            resultsMap.setCenter(results[0].geometry.location);
-    //            var marker = new google.maps.Marker({
-    //                map: resultsMap,
-    //                position: results[0].geometry.location
-    //            });
-    //        }
-    //        else {
-    //            // === if we were sending the requests to fast, try this one again and increase the delay
-    //            if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-    //                nextAddress--;
-    //                delay++;
-    //            } else {
-    //                var reason="Code "+status;
-    //                var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
-    //                document.getElementById("messages").innerHTML += msg;
-    //            }
-    //        }
-    //        next();
-    //    }
-    //);
 
     if(!(address in addresses)){
         geocoder.geocode({'address': address}, function(results, status) {
@@ -296,6 +272,7 @@ function changeRightPanel(d, eventIdx) {
         $("#diff").html(d.difficulty);
         $("#time").html(d.date);
         initializeMap(d.location);
+        $("#rightpanel").toggleClass("selectedPanel");
     }else{// History event
         $("#comment-area").text(d.comments);
     }
