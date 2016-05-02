@@ -60,7 +60,7 @@ this.append_event_table = function(parent, type) {
     $("<table></table>")
         .append(
             $("<tr></tr>").attr("id", "sort_by_buttons")
-            .append($("<a href='#'><td></td></a>").attr("id", "sort_by_date").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Date and Time"))
+            .append($("<td></td>").attr("id", "sort_by_date").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Date and Time"))
             .append($("<td></td>").attr("id", "sort_by_location").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Location"))
             .append($("<td></td>").attr("id", "sort_by_difficulty").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Difficulty"))
                 //.append($("<td></td>").attr("id", "sort_by_num").addClass("classWithPad").addClass("text-center").css("width", "150px").html("Number of Participants"))
