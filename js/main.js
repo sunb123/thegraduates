@@ -111,7 +111,7 @@ $(document).ready(function(){
             "timePickerIncrement": 15,
             "startDate": dateString,
             locale: {
-                format: 'MM/DD/YYYY h:mm'
+                format: 'DD/MMM/YYY'
             }
         });
         //}, function(start, end, label) {
@@ -160,7 +160,7 @@ $(document).ready(function(){
             console.log($("#timepicker").val());
             console.log($(".datepicker-historical").val());
             allEvents[historyEventsType].push({
-                date: new Date(Date.parse($(".datepicker-historical").val().replace(/-/g,"/"))),
+                date: new Date(Date.parse($(".datepicker-historical").val())), //.replace(/-/g,"/"))),
                 location: $("#location_newEvent").val(),
                 difficulty: $("#difficulty_newEvent").val(),
                 host: "Andrew",
@@ -331,20 +331,25 @@ function changeRightPanel(d, eventIdx) {
         console.log("Wrong");
         return;
     }
-    $("#rightpanel").show();
-    //console.log('event type:',d.type);
-    // Non history event
-    if(d.type == yourEventsType || d.type == upcomingEventsType){
-        $("#host").html(d.host);
-        $("#diff").html('V' + d.difficulty);
-        $("#time").html(d.date.toISOString().substring(0,10) + '  ' + d.date.toISOString().substring(11,13) + ':00');       
-        initializeMap(d.location);
-        $("#rightpanel").addClass("selectedPanel");
-    }else{// History event
+
+    // console.log('event type:',d.type);
+
+    if ($(".history-rightpanel").is(":visible")) {
         $("#item-desc-content").show()
         $("#comment-area").text(d.comments);
         initializeMap(d.location);
+    } else {
+        //Non history event
+        if(d.type == yourEventsType || d.type == upcomingEventsType){
+            $("#rightpanel").show();
+            $("#host").html(d.host);
+            $("#diff").html('V' + d.difficulty);
+            $("#time").html(d.date.toISOString().substring(0,10) + '  ' + d.date.toISOString().substring(11,13) + ':00');
+            initializeMap(d.location);
+            $("#rightpanel").addClass("selectedPanel");
+        }
     }
+
 
 
 

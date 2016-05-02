@@ -17,7 +17,9 @@ this.render_event = function(event, event_idx) {
     date_field = $("<td></td>")
         .addClass("classWithPad")
         .css("width", "150px")
-        .append(event.date.toUTCString()); //TODO should span two lines
+//        .append(event.date.toUTCString().substring(0,10) + '  ' + event.date.toUTCString().substring(11,13) + ':00');       
+        .append(event.date.toISOString().substring(0,10) + '  ' + event.date.toISOString().substring(11,13) + ':00');       
+
     //console.log(date_field);
     loc_field = $("<td></td>")
         .addClass("classWithPad")
