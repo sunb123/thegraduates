@@ -131,7 +131,7 @@ $(document).ready(function(){
             "timePickerIncrement": 15,
             "startDate": dateString,
             locale: {
-                format: 'DD/MMM/YYY'
+                format: 'MM/DD/YYYY h:mm'
             }
         });
         //}, function(start, end, label) {
