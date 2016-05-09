@@ -65,6 +65,33 @@ var allEvents = {0: goingToAttendEvents, 1: upcomingEvents, 2: pastEvents};
 
 var upcomingTable;
 var yourEventsTable;
+var difficultyDict = {
+
+    0: "B",
+        1: "0",
+        2: "0+",
+    3:"1",4:"2",5:"3",6:"4",7:"5",8:"6",9:"7",10:"8",11:"9",12:"10",13:"11",14:"12",15:"13",16:"14",17:"15",18:"16"
+
+    //<option label="V1" value="3">V1</option>
+    //<option label="V2" value="4">V2</option>
+    //<option label="V3" value="5">V3</option>
+    //<option label="V4" value="6">V4</option>
+    //
+    //<option label="V5" value="7">V5</option>
+    //<option label="V6" value="8">V6</option>
+    //<option label="V7" value="9">V7</option>
+    //<option label="V8" value="10">V8</option>
+    //
+    //<option label="V9" value="11">V9</option>
+    //<option label="V10" value="12">V10</option>
+    //<option label="V11" value="13">V11</option>
+    //<option label="V12" value="14">V12</option>
+    //
+    //<option label="V13" value="15">V13</option>
+    //<option label="V14" value="16">V14</option>
+    //<option label="V15" value="17">V15</option>
+    //<option label="V16" value="18">V16</option>
+};
 
 $(document).ready(function(){
 
@@ -127,7 +154,7 @@ $(document).ready(function(){
         $('.datepicker').daterangepicker({
             "singleDatePicker": true,
             "timePicker": true,
-            "timePicker24Hour": true,
+            "timePicker24Hour": false,
             "timePickerIncrement": 15,
             "startDate": dateString,
             locale: {
@@ -143,15 +170,13 @@ $(document).ready(function(){
             timer: 1200,
             type: 'success',
             showConfirmButton: false });
-            console.log($("#difficulty_newEvent").val());
-            console.log($("#location_newEvent").val());
-            console.log($("#timepicker").val());
-            console.log($(".datepicker").val());
+            console.log('diff dict:',difficultyDict[$("#difficulty_newEvent").val()]);
+
             allEvents[upcomingEventsType].push({
                 date: new Date(Date.parse($(".datepicker").val().replace(/-/g,"/"))),
                 location: $("#location_newEvent").val(),
                 distance: Math.floor(Math.random() * 40),
-                difficulty: $("#difficulty_newEvent").val(),
+                difficulty: $("#difficulty_newEvent").val(),//$("#difficulty_newEvent").val(),
                 host: "Andrew",
                 type: upcomingEventsType
             });
@@ -332,7 +357,7 @@ function geocodeAddress(geocoder, resultsMap, location) {
 
 }
 $("#join").on("click", function(){
-    console.log(currentSelectionIndex);
+    $("#rightpanel").hide();
     swal({   title: "Joined the event!",   
         timer: 1200,
         type: 'success',   
@@ -346,7 +371,7 @@ $("#join").on("click", function(){
 });
 
 $("#cancel").on("click", function(){
-    console.log(currentSelectionIndex);
+    $("#rightpanel").hide();
     swal({   title: "Cancelled the event!",   
         timer: 1000,   
         type: 'success',
@@ -380,10 +405,22 @@ function changeRightPanel(d, eventIdx) {
             var time = d.date.toLocaleTimeString('en-US');
             $("#rightpanel").show();
             $("#host").html(d.host);
-            $("#diff").html('V' + d.difficulty);
+            console.log("d.difficulty=", d.difficulty);
+            $("#diff").html('V' + difficultyDict[d.difficulty]);
             $("#time").html(d.date.toLocaleDateString('en-US') + '  ' + time.substring(0,time.lastIndexOf(":")) + time.substring(time.lastIndexOf(" ")));
             initializeMap(d.location);
             $("#rightpanel").addClass("selectedPanel");
         }
     }
 }
+$(document).mouseup(function (e)
+{
+    var container = $("#rightpanel");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        console.log("Hide right!");
+        container.hide();
+    }
+});
