@@ -11,15 +11,7 @@ var goingToAttendEvents = [{
     host: "Bill",
     type: 0
 }];
-var pastEvents = [{
-    date: new Date("2016/3/23 13:00"),
-    location: "130 Bowery St. New York, NY 10013",
-    distance: 400,
-    difficulty: 3,
-    host: "Tommy",
-    type: 2,
-    comments: "That was a great climb!"
-},
+var pastEvents = [
 {
     date: new Date(),
     location: "791 Walnut St, Newton Centre, MA 02459",
@@ -131,7 +123,7 @@ $(document).ready(function(){
             showPage(historyEventsType);
             // Populate table with pastEvents
             refreshTable(historyEventsType);
-            //emptyEventDetails();
+            $("#item-desc").hide();
         });
 
         // Show only your events initially
@@ -180,7 +172,18 @@ $(document).ready(function(){
                 host: "Andrew",
                 type: upcomingEventsType
             });
+
+            allEvents[yourEventsType].push({
+                date: new Date(Date.parse($(".datepicker").val().replace(/-/g,"/"))),
+                location: $("#location_newEvent").val(),
+                distance: Math.floor(Math.random() * 40),
+                difficulty: $("#difficulty_newEvent").val(),//$("#difficulty_newEvent").val(),
+                host: "Andrew",
+                type: upcomingEventsType
+            });
+
             $("#upcomingNav").click();
+
 
             //refreshTable(upcomingEventsType);
             //emptyEventDetails();
@@ -387,40 +390,56 @@ $("#cancel").on("click", function(){
 
 function changeRightPanel(d, eventIdx) {
     if(d == undefined){
-        console.log("Wrong");
+        //console.log("Wrong");
         return;
     }
 
-    // console.log('event type:',d.type);
+    console.log('event type:',d.type);
 
-    if ($(".history-rightpanel").is(":visible")) {
-        $("#item-desc-content").show()
-        $("#comment-area").text(d.comments);
-        $("#item-desc").show();
-        $("#item-desc").addClass("selectedPanel");
-        initializeMap(d.location);
-    } else {
+    //if ($(".history-rightpanel").is(":visible")) {
+    //    $("#item-desc-content").show()
+    //    $("#comment-area").text(d.comments);
+    //    $("#item-desc").show();
+    //    $("#item-desc").addClass("selectedPanel");
+    //    initializeMap(d.location);
+    if(d.type == historyEventsType){
+        $("#rightpanel").hide();
+            console.log("Showing history");
+            $("#item-desc-content").show()
+            $("#comment-area").text(d.comments);
+            $("#item-desc").show();
+            $("#item-desc").addClass("selectedPanel");
+            initializeMap(d.location);
+    } else if(d.type == yourEventsType || d.type == upcomingEventsType){
         //Non history event
-        if(d.type == yourEventsType || d.type == upcomingEventsType){
+        console.log("Showing right panel;");
+        $("#item-desc").hide();
             var time = d.date.toLocaleTimeString('en-US');
             $("#rightpanel").show();
             $("#host").html(d.host);
-            console.log("d.difficulty=", d.difficulty);
+            //console.log("d.difficulty=", d.difficulty);
             $("#diff").html('V' + difficultyDict[d.difficulty]);
             $("#time").html(d.date.toLocaleDateString('en-US') + '  ' + time.substring(0,time.lastIndexOf(":")) + time.substring(time.lastIndexOf(" ")));
             initializeMap(d.location);
             $("#rightpanel").addClass("selectedPanel");
-        }
+
     }
 }
 $(document).mouseup(function (e)
 {
     var container = $("#rightpanel");
+    var container2 = $("#item-desc");
 
     if (!container.is(e.target) // if the target of the click isn't the container...
         && container.has(e.target).length === 0) // ... nor a descendant of the container
     {
-        console.log("Hide right!");
+        //console.log("Hide right!");
         container.hide();
+    }
+    if (!container2.is(e.target) // if the target of the click isn't the container...
+        && container2.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        //console.log("Hide history!");
+        container2.hide();
     }
 });
